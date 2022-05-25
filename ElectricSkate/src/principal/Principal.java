@@ -9,6 +9,8 @@ public class Principal {
 		System.out.println("Hola de Reginaldo");
 		
 		System.out.println("hola alberto");
+		
+		System.out.println("Hola de kike");
 
 	}
 
