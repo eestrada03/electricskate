@@ -3,7 +3,7 @@ package principal;
 public class Principal {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stubç
+
 		System.out.println("Hola Mundo!");
 
 		System.out.println("Hola de Reginaldo");
@@ -16,6 +16,7 @@ public class Principal {
 
 		System.out.println("Hola de luz");
 
+		System.out.println("estoy  muy triste");
 	}
 
 }
