@@ -10,7 +10,11 @@ public class Principal {
 		
 		System.out.println("hola alberto");
 		
+
 		System.out.println("Hola de kike");
+
+		System.out.println("Hola jose");
+
 
 	}
 
