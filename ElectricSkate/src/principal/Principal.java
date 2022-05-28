@@ -5,33 +5,32 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class Principal {
 
 	public static void main(String[] args) {
 
 		try {
-			
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/electricskate", "root", "");
-			
-			System.out.println("¡Conexión establecida correctamente!");
-			
-			//creamos tablas
-			//Metodos.createPatinete(connection, "electricskate");
-			Metodos.createCliente(connection, "electricskate");
-			Metodos.createAdministrador(connection, "electricskate");
-			
-			
-			
-		} catch (SQLException e) { 
-			printSQLException(e); 
-			 
+
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/electricskate", "root",
+					"");
+
+			// System.out.println("¡Conexión establecida correctamente!");
+
+			// creamos tablas
+			// Metodos.createPatinete(connection, "electricskate");
+			// Metodos.createCliente(connection, "electricskate");
+			// Metodos.createAdministrador(connection, "electricskate");
+			// Metodos.cargaPatinete(connection,"electricskate");
+			// Metodos.cargaCliente(connection, "electricskate");
+
+			Metodos.BusquedaClientes(connection, "electricskate");
+
+		} catch (SQLException e) {
+			printSQLException(e);
+
 		}
 	}
-	
-	
-	
-	
+
 	private static void printSQLException(SQLException ex) {
 
 		ex.printStackTrace(System.err);
