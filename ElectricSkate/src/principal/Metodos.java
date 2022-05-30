@@ -83,11 +83,12 @@ public class Metodos {
 
 	}
 	
+	// metodo para crear la tabla Alquiler
 	public static void createAlquiler(Connection connection, String BDNombre) throws SQLException {
 
 		String createString = "create table " + BDNombre + ".alquiler " + "(idAlquiler integer NOT NULL,"
 				+ "dni varchar(40) NOT NULL," + "numSerie integer NOT NULL," + "fechaAlquiler date NOT NULL,"
-				+ "fechaDevolucion date," + "kmRecorridoCliente float(40)," 
+				+ "fechaDevolucion date NOT NULL," + "kmRecorridoCliente float(40)," 
 				+ "PRIMARY KEY (idAlquiler)," 
 				+ "FOREIGN KEY (dni) REFERENCES cliente (dni)," + "FOREIGN KEY (numSerie) REFERENCES patinete (numSerie))";
 
@@ -107,8 +108,7 @@ public class Metodos {
 		}
 
 	}
-		
-	
+			
 	// Metodo para insertar los patinetes
 	public static void cargaPatinete(Connection connection, String BDNombre) throws SQLException {
 
