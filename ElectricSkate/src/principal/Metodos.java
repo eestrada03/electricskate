@@ -87,7 +87,7 @@ public class Metodos {
 
 		String createString = "create table " + BDNombre + ".alquiler " + "(idAlquiler integer NOT NULL,"
 				+ "dni varchar(40) NOT NULL," + "numSerie integer NOT NULL," + "fechaAlquiler date NOT NULL,"
-				+ "fechaDevolucion date NOT NULL," + "disponible bit NOT NULL," + "kmRecorridoCliente float(40) NOT NULL," 
+				+ "fechaDevolucion date NOT NULL," + "kmRecorridoCliente float(40) NOT NULL," 
 				+ "PRIMARY KEY (idAlquiler)," 
 				+ "FOREIGN KEY (dni) REFERENCES cliente (dni)," + "FOREIGN KEY (numSerie) REFERENCES patinete (numSerie))";
 
