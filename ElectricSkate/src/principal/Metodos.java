@@ -405,5 +405,150 @@ public class Metodos {
 		}
 
 	}
+	
+	public static void listadoPatinetes(Connection con, String BDNombre) throws SQLException {
+		
+		String query = "";
+		Statement stmt = null;
 
+		System.out.println("-- Lista de Patinetes --");
+		System.out.println("");
+		System.out.println("1) Listado de patinetes alquilados");
+		System.out.println("");
+		System.out.println("2) Listado de patinetes no alquilados");
+		System.out.println("");
+		System.out.println("3) Listado de patinetes alquilados y no alquilados");
+		System.out.println("");
+		System.out.print("Seleccione una opción: ");
+
+		int menu = teclado.nextInt();
+		teclado.nextLine();
+
+		switch (menu) {
+
+		case 1:
+			
+			System.out.println("");
+			System.out.println("-- Listado de patinetes alquilados --");
+
+			query = "select numSerie, marca, color, modelo from " + BDNombre + ".patinete where disponible = '0' ";
+
+			try {
+
+				stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				while (rs.next()) {
+
+					System.out.println("");
+					System.out.println("---------------------------------------------");
+
+					String numSerie = rs.getString("numSerie");
+					System.out.println("Nº de Serie: " + numSerie);
+
+					String marca = rs.getString("marca");
+					System.out.println("Marca: " + marca);
+
+					String color = rs.getString("color");
+					System.out.println("Color: " + color);
+					
+					String modelo = rs.getString("modelo");
+					System.out.println("Modelo: " + modelo);
+
+					System.out.println("---------------------------------------------");
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				stmt.close();
+			}
+
+			break;
+
+		case 2:
+			
+			System.out.println("");
+			System.out.println("-- Listado de patinetes no alquilados --");
+
+			query = "select numSerie, marca, color, modelo from " + BDNombre + ".patinete where disponible = '1' ";
+
+			try {
+
+				stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				while (rs.next()) {
+
+					System.out.println("");
+					System.out.println("---------------------------------------------");
+
+					String numSerie = rs.getString("numSerie");
+					System.out.println("Nº de Serie: " + numSerie);
+
+					String marca = rs.getString("marca");
+					System.out.println("Marca: " + marca);
+
+					String color = rs.getString("color");
+					System.out.println("Color: " + color);
+					
+					String modelo = rs.getString("modelo");
+					System.out.println("Modelo: " + modelo);
+
+					System.out.println("---------------------------------------------");
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				stmt.close();
+			}
+			
+			break;
+
+		case 3:
+			
+			System.out.println("");
+			System.out.println("-- Listado de patinetes alquilados y no alquilados --");
+
+			query = "select numSerie, marca, color, modelo from " + BDNombre + ".patinete";
+
+			try {
+
+				stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				while (rs.next()) {
+
+					System.out.println("");
+					System.out.println("---------------------------------------------");
+
+					String numSerie = rs.getString("numSerie");
+					System.out.println("Nº de Serie: " + numSerie);
+
+					String marca = rs.getString("marca");
+					System.out.println("Marca: " + marca);
+
+					String color = rs.getString("color");
+					System.out.println("Color: " + color);
+					
+					String modelo = rs.getString("modelo");
+					System.out.println("Modelo: " + modelo);
+
+					System.out.println("---------------------------------------------");
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				stmt.close();
+			}
+			
+			break;
+
+		}
+
+	}
+	
+	
 }
