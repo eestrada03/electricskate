@@ -87,7 +87,7 @@ public class Metodos {
 
 		String createString = "create table " + BDNombre + ".alquiler " + "(idAlquiler integer NOT NULL,"
 				+ "dni varchar(40) NOT NULL," + "numSerie integer NOT NULL," + "fechaAlquiler date NOT NULL,"
-				+ "fechaDevolucion date NOT NULL," + "kmRecorridoCliente float(40) NOT NULL," 
+				+ "fechaDevolucion date," + "kmRecorridoCliente float(40)," 
 				+ "PRIMARY KEY (idAlquiler)," 
 				+ "FOREIGN KEY (dni) REFERENCES cliente (dni)," + "FOREIGN KEY (numSerie) REFERENCES patinete (numSerie))";
 
@@ -107,8 +107,7 @@ public class Metodos {
 		}
 
 	}
-	
-	
+		
 	
 	// Metodo para insertar los patinetes
 	public static void cargaPatinete(Connection connection, String BDNombre) throws SQLException {
@@ -307,7 +306,7 @@ public class Metodos {
 
 	}
 
-	// Método para realizar devoluciones de patinetes
+	// Método para realizar devoluciones de patinetes (AÚN EN PROCESO)
 	public static void realizarDevolucion(Connection connection, String BDNombre) throws SQLException{
 		
 		boolean exit = false;
@@ -319,7 +318,7 @@ public class Metodos {
 			String dni = teclado.nextLine();
 				
 			Statement stmt = null;
-			String comprobar = "SELECT numSerie " + " from " + BDNombre + ".cliente"
+			String comprobar = "SELECT numSerie " + " from " + BDNombre + ".alquiler"
 					+ " WHERE dni = '" + dni + "'";
 			
 			
@@ -332,16 +331,18 @@ public class Metodos {
 				
 				if (registro.next()) {
 					
-			/*		double kmRecorridoPatinete = SELECT kmRecorridoPatinete " + " from " + BDNombre + ".patinete"
-					+ " WHERE numSerie = '" + numSerie + "'";
-					double kmRecorridoCliente = SELECT kmRecorridoCliente " + " from " + BDNombre + ".cliente"
-					+ " WHERE numSerie = '" + numSerie + "'";
+				/*	String kmRecorridoPatinete = "SELECT kmRecorridoPatinete " + " from " + BDNombre + ".patinete"
+					+ " WHERE numSerie from " + BDNombre + ".patinete = numSerie + from "+ BDNombre + ".alquiler";
+					
+					String kmRecorridoCliente = "SELECT kmRecorridoCliente " + " from " + BDNombre + ".cliente"
+					+ " WHERE dni = '" + dni + "'";
 					
 					stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET kmRecorrido = " 
 									+ (kmRecorridoPatinete + kmRecorridoCliente) + " WHERE dni = '" + dni + "'");
-				*/	
-					stmt.executeUpdate("UPDATE " + BDNombre + ".cliente SET numSerie = NULL " + " WHERE dni = '" + dni + "'");
+					*/
 					
+					//stmt.executeUpdate("UPDATE " + BDNombre + ".cliente SET numSerie = NULL " + " WHERE dni = '" + dni + "'");
+					stmt.executeUpdate("INSERT INTO " + BDNombre + ".alquiler VALUES ('2022-05-06',25)" );
 					
 					System.out.println("");
 					System.out.println("Se ha devuelto el patinete correctamente.");
@@ -361,33 +362,69 @@ public class Metodos {
 		} while (!exit);
 	}
 	
-	// Método para exportar listados a ficheros TXT
+	// Método para exportar listados a ficheros TXT (AÚN EN PROCESO)
 	public static void ExportarArchivoTXT(Connection connection, String BDNombre) throws SQLException{
 		
-		String frase = "SELECT * " + " FROM " + BDNombre + ".cliente";
+	
+		String query = "";
+		Statement stmt = null;
 		
-		try {
+		query = "select numSerie, marca, color, modelo from " + BDNombre + ".patinete where disponible = '1' ";
+		
+		
+	try {	
+		stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+
+		FileWriter escritura = new FileWriter ("C:\\Users\\Programming\\Desktop\\informes.txt");
+		
+		// Creamos el buffer
+		BufferedWriter buff = new BufferedWriter (escritura);
+		
+		buff.write("-- Listado de patinetes no alquilados --");		
+		buff.newLine();
+		buff.newLine();
+		
+		while (rs.next()) {
+			
 			// Crear archivo
-			FileWriter escritura = new FileWriter ("D:\\informes.txt");
-			
-			// Creamos el buffer
-			BufferedWriter buff = new BufferedWriter (escritura);
-			
-			// Escribimos la frase en el buffer
-			buff.write(frase);
+			buff.write("---------------------------------------------");
 			buff.newLine();
+			String numSerie = rs.getString("numSerie");
+			buff.write("Nº de Serie: " + numSerie);
 			buff.newLine();
+
+			String marca = rs.getString("marca");	
+			buff.write("Marca: " + marca);
+			buff.newLine();
+
+			String color = rs.getString("color");
+			buff.write("Color: " + color);
+			buff.newLine();
+
+			String modelo = rs.getString("modelo");
+			buff.write("Modelo: " + modelo);
+			buff.newLine();
+			buff.write("---------------------------------------------");
+			buff.newLine();
+			buff.newLine();		
 			
-			System.out.println("guardado correctamente");
-			
-			buff.close();
-			
-			
-		} catch (IOException e){
-			e.printStackTrace();
 		}
 		
-	}
+		System.out.println("El fichero se ha escrito y guardado correctamente!");	
+		
+		buff.close();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		stmt.close();
+	}	
+		
+				
+}
 	
 	
 	private static void printSQLException(SQLException ex) {

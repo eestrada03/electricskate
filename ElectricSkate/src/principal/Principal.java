@@ -19,10 +19,11 @@ public class Principal {
 			//Metodos.createAlquiler(connection, "electricskate");
 			//Metodos.cargaPatinete(connection,"electricskate");
 			//Metodos.cargaCliente(connection, "electricskate");
-			Metodos.listadoPatinetes(connection, "electricskate");
+			//Metodos.listadoPatinetes(connection, "electricskate");
 			//Metodos.busquedaClientes(connection, "electricskate");
 			
-			
+			Metodos.ExportarArchivoTXT(connection, "electricskate");
+
 
 		} catch (SQLException e) {
 			printSQLException(e);
