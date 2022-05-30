@@ -1,9 +1,6 @@
 package principal;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Principal {
 
@@ -11,19 +8,21 @@ public class Principal {
 
 		try {
 
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/electricskate", "root",
-					"");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/electricskate", "root", "");
 
 			// System.out.println("¡Conexión establecida correctamente!");
 
 			// creamos tablas
-			// Metodos.createPatinete(connection, "electricskate");
-			// Metodos.createCliente(connection, "electricskate");
-			// Metodos.createAdministrador(connection, "electricskate");
-			// Metodos.cargaPatinete(connection,"electricskate");
-			// Metodos.cargaCliente(connection, "electricskate");
+			Metodos.createPatinete(connection, "electricskate");
+			Metodos.createCliente(connection, "electricskate");
+			Metodos.createAdministrador(connection, "electricskate");
+			Metodos.createAlquiler(connection, "electricskate");
+			Metodos.cargaPatinete(connection,"electricskate");
+			Metodos.cargaCliente(connection, "electricskate");
 
-			Metodos.BusquedaClientes(connection, "electricskate");
+			//Metodos.busquedaClientes(connection, "electricskate");
+			
+			
 
 		} catch (SQLException e) {
 			printSQLException(e);
