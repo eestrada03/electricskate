@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Metodos {
@@ -310,7 +311,7 @@ public class Metodos {
 	public static void realizarDevolucion(Connection connection, String BDNombre) throws SQLException{
 		
 		boolean exit = false;
-		
+
 		do {
 		
 			System.out.println("introduzca el DNI del cliente con el patinete a devolver: ");
@@ -318,31 +319,42 @@ public class Metodos {
 			String dni = teclado.nextLine();
 				
 			Statement stmt = null;
-			String comprobar = "SELECT numSerie " + " from " + BDNombre + ".alquiler"
+			String comprobarDni = "SELECT numSerie " + " from " + BDNombre + ".alquiler"
 					+ " WHERE dni = '" + dni + "'";
 			
-			
+						
 			try {
 	
 				stmt = connection.createStatement();
-				ResultSet registro = stmt.executeQuery(comprobar);
+				ResultSet registro = stmt.executeQuery(comprobarDni);
+					
 				
-		
+				if (registro.next()) {										
+						
+						System.out.println("");
+						System.out.println("introduzca los kilometros recorridos por el cliente: ");
+						System.out.println("");
+						
+						double kmRecorridoCliente = teclado.nextDouble();
+						
 				
-				if (registro.next()) {
-					
-				/*	String kmRecorridoPatinete = "SELECT kmRecorridoPatinete " + " from " + BDNombre + ".patinete"
-					+ " WHERE numSerie from " + BDNombre + ".patinete = numSerie + from "+ BDNombre + ".alquiler";
-					
-					String kmRecorridoCliente = "SELECT kmRecorridoCliente " + " from " + BDNombre + ".cliente"
-					+ " WHERE dni = '" + dni + "'";
-					
-					stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET kmRecorrido = " 
-									+ (kmRecorridoPatinete + kmRecorridoCliente) + " WHERE dni = '" + dni + "'");
-					*/
-					
-					//stmt.executeUpdate("UPDATE " + BDNombre + ".cliente SET numSerie = NULL " + " WHERE dni = '" + dni + "'");
-					stmt.executeUpdate("INSERT INTO " + BDNombre + ".alquiler VALUES ('2022-05-06',25)" );
+							//Actualizamos los km recorridos por el cliente											
+							stmt.executeUpdate("UPDATE " + BDNombre + ".alquiler SET kmRecorridoCliente = '" + kmRecorridoCliente + "'" + " WHERE dni = '" + dni + "'");
+							
+							//Actualizamos la tabla patinete y lo ponemos en disponible
+							ResultSet rs = stmt.executeQuery("SELECT numSerie FROM alquiler WHERE dni = '" + dni + "'");
+							rs.next();
+							int numSerie = rs.getInt("numSerie");
+							
+							stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET disponible = 1 WHERE numSerie =" + numSerie);
+							
+							//Actualizamos los km recorridos por el patinete en la tabla patinete
+							ResultSet rs2 = stmt.executeQuery("SELECT kmRecorridoPatinete FROM patinete WHERE numSerie =" + numSerie);
+							rs2.next();
+							double kmRecorridoPatinete = rs2.getInt("kmRecorridoPatinete");
+							
+							stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET kmRecorridoPatinete = '" +(kmRecorridoPatinete + kmRecorridoCliente )+ "'" + " WHERE numSerie =" + numSerie);
+							
 					
 					System.out.println("");
 					System.out.println("Se ha devuelto el patinete correctamente.");
