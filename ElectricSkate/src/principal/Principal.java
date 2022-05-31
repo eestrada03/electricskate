@@ -24,8 +24,8 @@ public class Principal {
 			// Metodos.listadoPatinetes(connection, "electricskate");
 			// Metodos.busquedaClientes(connection, "electricskate");
 
-			//Metodos.registrarNuevosUsuarios(connection, "electricskate");
-			 Metodos.realizarDevolucion(connection, "electricskate");
+			Metodos.registrarNuevosUsuarios(connection, "electricskate");
+			//Metodos.realizarDevolucion(connection, "electricskate");
 			// Metodos.ExportarArchivoTXT(connection, "electricskate");
 
 		} catch (SQLException e) {

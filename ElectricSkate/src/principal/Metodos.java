@@ -626,8 +626,8 @@ public class Metodos {
 				System.out.println("introduzca la edad");
 				int edad = teclado.nextInt();
 				System.out.println("introduzca el dni");
-				String dni = teclado.nextLine();
 				teclado.nextLine();
+				String dni = teclado.nextLine();
 				System.out.println("introduzca el email");
 				String email = teclado.nextLine();
 				Statement stmt = null;
