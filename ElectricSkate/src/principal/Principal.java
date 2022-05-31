@@ -1,6 +1,8 @@
 package principal;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Principal {
 
@@ -13,19 +15,18 @@ public class Principal {
 			// System.out.println("¡Conexión establecida correctamente!");
 
 			// creamos tablas
-			//Metodos.createPatinete(connection, "electricskate");
-			//Metodos.createCliente(connection, "electricskate");
-			//Metodos.createAdministrador(connection, "electricskate");
-			//Metodos.createAlquiler(connection, "electricskate");
-			//Metodos.cargaPatinete(connection,"electricskate");
-			//Metodos.cargaCliente(connection, "electricskate");
-			//Metodos.listadoPatinetes(connection, "electricskate");
-			//Metodos.busquedaClientes(connection, "electricskate");
-			
-			
-			Metodos.realizarDevolucion(connection, "electricskate");
-			//Metodos.ExportarArchivoTXT(connection, "electricskate");
+			// Metodos.createPatinete(connection, "electricskate");
+			// Metodos.createCliente(connection, "electricskate");
+			// Metodos.createAdministrador(connection, "electricskate");
+			// Metodos.createAlquiler(connection, "electricskate");
+			// Metodos.cargaPatinete(connection,"electricskate");
+			// Metodos.cargaCliente(connection, "electricskate");
+			// Metodos.listadoPatinetes(connection, "electricskate");
+			// Metodos.busquedaClientes(connection, "electricskate");
 
+			Metodos.registrarNuevosUsuarios(connection, "electricskate");
+			// Metodos.realizarDevolucion(connection, "electricskate");
+			// Metodos.ExportarArchivoTXT(connection, "electricskate");
 
 		} catch (SQLException e) {
 			printSQLException(e);
