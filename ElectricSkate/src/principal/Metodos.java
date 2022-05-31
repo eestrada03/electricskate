@@ -315,17 +315,17 @@ public class Metodos {
 
 		do {
 
-			System.out.println("introduzca el DNI del cliente con el patinete a devolver: ");
+			System.out.println("introduzca el Id del Alquiler con el patinete a devolver: ");
 			System.out.println("");
-			String dni = teclado.nextLine();
+			String idAlquiler = teclado.nextLine();
 
 			Statement stmt = null;
-			String comprobarDni = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE dni = '" + dni + "'";
+			String comprobarAlquiler = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '" + idAlquiler + "'";
 
 			try {
 
 				stmt = connection.createStatement();
-				ResultSet registro = stmt.executeQuery(comprobarDni);
+				ResultSet registro = stmt.executeQuery(comprobarAlquiler);
 
 				if (registro.next()) {
 
@@ -337,10 +337,10 @@ public class Metodos {
 
 					// Actualizamos los km recorridos por el cliente
 					stmt.executeUpdate("UPDATE " + BDNombre + ".alquiler SET kmRecorridoCliente = '"
-							+ kmRecorridoCliente + "'" + " WHERE dni = '" + dni + "'");
+							+ kmRecorridoCliente + "'" + " WHERE idAlquiler = '" + idAlquiler + "'");
 
 					// Actualizamos la tabla patinete y lo ponemos en disponible
-					ResultSet rs = stmt.executeQuery("SELECT numSerie FROM alquiler WHERE dni = '" + dni + "'");
+					ResultSet rs = stmt.executeQuery("SELECT numSerie FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
 					rs.next();
 					int numSerie = rs.getInt("numSerie");
 
