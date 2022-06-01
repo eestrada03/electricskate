@@ -15,12 +15,11 @@ public class Principal {
 			System.out.println("¡Conexión establecida correctamente!");
 
 			// creamos la base de datos
-			Metodos.createBaseDeDatos(connection, "electricskate");
-			
-			
+			//Metodos.createBaseDeDatos(connection, "electricskate");
+					
 			//Metodos.listadoPatineteAlquilado(connection, "electricskate");
 			//Metodos.listadoPatineteNoAlquilado(connection, "electricskate");
-			//Metodos.listadoTotalPatinetes(connection, "electricskate");
+			//Metodos.listadoCompletoPatinetes(connection, "electricskate");
 			
 			// Metodos.listadoCliente(connection, "electricskate");
 			// Metodos.buscarCliente(connection, "electricskate");
@@ -28,14 +27,15 @@ public class Principal {
 			// Metodos.registrarNuevosClientes(connection, "electricskate");
 			// Metodos.registrarNuevosAdministradores(connection, "electricskate");
 
-			// Metodos.realizarDevolucion(connection, "electricskate");
+			 // Metodos.realizarDevolucion(connection, "electricskate");
 			// Metodos.exportarListadoPatineteAlquiladoTXT(connection, "electricskate");
 			// Metodos.exportarListadoPatineteNoAlquiladoTXT(connection, "electricskate");
-			// Metodos.exportarListadoTotalPatinetesTXT(connection, "electricskate");
+			// Metodos.exportarListadoCompletoPatinetesTXT(connection, "electricskate");
 			// Metodos.exportarListadoClientesTXT(connection, "electricskate");
 			// Metodos.registrarPatinete(connection, "electricskate");
 			
 			//Metodos.menuPrincipal(connection, "electricskate");
+			//Metodos.LogIn(connection, "electricskate");
 
 		} catch (SQLException e) {
 			printSQLException(e);
