@@ -828,5 +828,54 @@ public class Metodos {
 		}
 
 	}
+	
+	//(KIKE)
+	//Método para añadir patinete.
+	
+	public static void añadirPatinete(Connection connection, String BDnom) throws SQLException {
 
+		System.out.println("------------------");
+		System.out.println(" AÑADIR PATINETE  ");
+		System.out.println("------------------");
+		
+		System.out.println("Ha seleccionado el método añadir patinete.");
+		System.out.println("Introduzca los valores correspondientes:");
+		
+		System.out.print("Nº Serie: ");
+		int numSerie = teclado.nextInt();
+		System.out.println(" ");
+		
+		teclado.nextLine();
+		System.out.print("Marca: ");
+		String marca = teclado.nextLine();
+		
+		System.out.println(" ");
+		
+		System.out.print("Color: ");
+		String color = teclado.nextLine();
+		System.out.println(" ");
+		
+		System.out.print("Modelo: ");
+		String modelo = teclado.nextLine();
+		System.out.println(" ");
+	
+		
+		Statement stmt = null;
+
+		try {
+			stmt = connection.createStatement();
+
+			stmt.executeUpdate("insert into " + BDnom + ".patinete VALUES(" + numSerie + ",'" +  marca
+					+ "','" + color + "','" + modelo + "'," + 0 + ", "+ 1 + ")");
+			System.out.println("");
+			System.out.println("Se ha añadido el patinete nº " + numSerie + " correctamente.");
+
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+
+			connection.close();
+		}
+
+	}
 }
