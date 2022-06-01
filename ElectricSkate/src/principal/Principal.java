@@ -12,14 +12,14 @@ public class Principal {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/electricskate", "root", "");
 
-			// System.out.println("¡Conexión establecida correctamente!");
+			System.out.println("¡Conexión establecida correctamente!");
 
 			// creamos tablas
 			// Metodos.createPatinete(connection, "electricskate");
 			// Metodos.createCliente(connection, "electricskate");
 			// Metodos.createAdministrador(connection, "electricskate");
 			// Metodos.createAlquiler(connection, "electricskate");
-			// Metodos.cargaPatinete(connection,"electricskate");
+			// Metodos.cargaPatinete(connection, "electricskate");
 			// Metodos.cargaCliente(connection, "electricskate");
 			// Metodos.listadoPatinetes(connection, "electricskate");
 			// Metodos.busquedaClientes(connection, "electricskate");

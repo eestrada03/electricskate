@@ -595,7 +595,7 @@ public class Metodos {
 
 	}
 
-	public static void registrarNuevosUsuarios(Connection connection, String proyecto) throws SQLException {
+	public static void registrarNuevosUsuarios(Connection connection, String electricskate) throws SQLException {
 		boolean salir = false;
 
 		while (!salir) {
@@ -626,8 +626,8 @@ public class Metodos {
 				System.out.println("introduzca la edad");
 				int edad = teclado.nextInt();
 				System.out.println("introduzca el dni");
-				String dni = teclado.nextLine();
 				teclado.nextLine();
+				String dni = teclado.nextLine();
 				System.out.println("introduzca el email");
 				String email = teclado.nextLine();
 				Statement stmt = null;
@@ -635,7 +635,7 @@ public class Metodos {
 				try {
 					stmt = connection.createStatement();
 
-					stmt.executeUpdate("insert into " + proyecto + ".cliente VALUES('" + nombre + "','" + apellido
+					stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellido
 							+ "'," + edad + ",'" + dni + "','" + email + "')");
 					System.out.println("");
 					System.out.println("Usuario añadido correctamente");
@@ -645,11 +645,61 @@ public class Metodos {
 				} finally {
 
 					connection.close();
-
 				}
+				break;
 
+			case 2:
+
+				teclado.nextLine();
+				System.out.println("****registrar nuevo Administrador****");
+				System.out.println("");
+				System.out.println("introduzca el nombre");
+				String nombre1 = teclado.nextLine();
+				System.out.println("introduzca el apellido");
+				String apellido1 = teclado.nextLine();
+				System.out.println("introduzca la edad");
+				int edad1 = teclado.nextInt();
+				System.out.println("introduzca el dni");
+				teclado.nextLine();
+				String dni1 = teclado.nextLine();
+				System.out.println("introduzca el email");
+				String email1 = teclado.nextLine();
+				System.out.println("introduzca el nombre de usuario");
+				String nombreUsuario = teclado.nextLine();
+				System.out.println("introduzca la contraseña");
+				String contraseña = teclado.nextLine();
+				Statement stmt1 = null;
+
+				try {
+					stmt1 = connection.createStatement();
+
+					stmt1.executeUpdate("insert into " + electricskate + ".administrador VALUES('" + nombre1 + "','"
+							+ apellido1 + "'," + edad1 + ",'" + dni1 + "','" + email1 + "','" + nombreUsuario + "','"
+							+ contraseña + "')");
+					System.out.println("");
+					System.out.println("Usuario administrador añadido correctamente");
+
+				} catch (SQLException e) {
+					printSQLException(e);
+				} finally {
+
+					connection.close();
+				}
+				break;
+			case 3:
+				salir = true;
+				System.out.println("volviendo al menú principal...");
+				break;
+
+			default:
+
+				System.out.println("¡error! esta opcion no es valida");
 			}
+
 		}
+		while (!salir)
+			;
+
 	}
 
 }
