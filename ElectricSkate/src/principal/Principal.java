@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		try {
 
@@ -27,7 +27,7 @@ public class Principal {
 			//Metodos.listadoTotalPatinetes(connection, "electricskate");
 			
 			// Metodos.listadoCliente(connection, "electricskate");
-			// Metodos.buscarCliente(connection, "electricskate");
+			 // Metodos.buscarCliente(connection, "electricskate");
 
 			// Metodos.registrarNuevosClientes(connection, "electricskate");
 			// Metodos.registrarNuevosAdministradores(connection, "electricskate");
@@ -36,8 +36,10 @@ public class Principal {
 			// Metodos.exportarListadoPatineteAlquiladoTXT(connection, "electricskate");
 			// Metodos.exportarListadoPatineteNoAlquiladoTXT(connection, "electricskate");
 			// Metodos.exportarListadoTotalPatinetesTXT(connection, "electricskate");
-			// Metodos.exportarListadoClientesTXT(connection, "electricskate");ç
-			//Metodos.añadirPatinete(connection, "electricskate");
+			// Metodos.exportarListadoClientesTXT(connection, "electricskate");
+			// Metodos.registrarPatinete(connection, "electricskate");
+			
+			Metodos.menuPrincipal(connection, "electricskate");
 
 		} catch (SQLException e) {
 			printSQLException(e);

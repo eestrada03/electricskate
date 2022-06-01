@@ -35,7 +35,134 @@ public class Metodos {
 		}
 
 	}
+	
+	public static void menuPrincipal(Connection connection, String BDNombre) throws SQLException, InterruptedException {
+		
+		System.out.println("");
+		System.out.println("===============================");
+		System.out.println("=============MENÚ==============");
+		System.out.println("===============================");
+		System.out.println("");
+		System.out.println("1) Buscar usuario");
+		System.out.println("");
+		System.out.println("2) Registrar nuevo usuario");
+		System.out.println("");
+		System.out.println("3) Registrar patinete");
+		System.out.println("");
+		System.out.println("4) Listados");
+		System.out.println("");
+		System.out.println("5) Realizar alquiler");
+		System.out.println("");
+		System.out.println("6) Realizar devolucion");
+		System.out.println("");
+		System.out.println("7) Exportar ficheros");
+		System.out.println("");
+		System.out.println("8) Logout");
+		System.out.println("");
+		System.out.print("Seleccione una opción: ");
+		int opcion = teclado.nextInt();
+		
+		switch (opcion) {
+		
+		case 1:
+			
+			buscarCliente(connection, BDNombre);
+			
+			break;
+		case 2:
+			
+			registrarNuevoUsuario(connection, BDNombre);
+			
+			break;
+			
+		case 3:
+			
+			registrarPatinete(connection, BDNombre);
+			
+			break;
+			
+		case 4:
+			
+			
+			
+			break;
+			
+		case 5:
+			
+			
+			
+			break;
+			
+		case 6:
+			
+			realizarDevolucion(connection, BDNombre);
+			
+			break;
+			
+		case 7:
+			
+			
+			
+			break;
+			
+		case 8:
+			
+			break;
 
+		default:
+			break;
+		}
+		
+		
+	}
+
+	public static void registrarNuevoUsuario(Connection connection, String BDNombre) throws SQLException, InterruptedException {
+		
+		System.out.println("");
+		System.out.println("===============================");
+		System.out.println("====REGISTRAR NUEVO USUARIO====");
+		System.out.println("===============================");
+		System.out.println("");
+		System.out.println("1) Crear usuario cliente");
+		System.out.println("");
+		System.out.println("2) Crear usuario administrador");
+		System.out.println("");
+		System.out.println("3) Volver al menú principal");
+		System.out.println("");
+		System.out.print("Seleccione una opción: ");
+		int opcion = teclado.nextInt();
+		
+		switch (opcion) {
+		case 1:
+			
+			registrarNuevosClientes(connection, BDNombre);
+			
+			break;
+		case 2:
+			
+			registrarNuevosAdministradores(connection, BDNombre);
+			
+			break;
+		
+		case 3:
+			
+			menuPrincipal(connection, BDNombre);
+			
+			break;
+
+		default:
+			
+			System.out.println("\n¡Error!, elija una opción disponible");
+			Thread.sleep(5000);
+			registrarNuevoUsuario(connection, BDNombre);
+			break;
+		}
+		
+		
+		
+	}
+	
+	
 	// metodo para crear la tabla clientes
 	public static void createCliente(Connection connection, String BDNombre) throws SQLException {
 
@@ -814,7 +941,7 @@ public class Metodos {
 	// (KIKE)
 	// Método para añadir patinete.
 
-	public static void añadirPatinete(Connection connection, String BDnom) throws SQLException {
+	public static void registrarPatinete(Connection connection, String BDnom) throws SQLException {
 
 		System.out.println("------------------");
 		System.out.println(" AÑADIR PATINETE  ");
