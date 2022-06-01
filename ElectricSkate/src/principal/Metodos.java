@@ -167,14 +167,14 @@ public class Metodos {
 	}
 
 	// metodo para buscar a los clientes registrados mediante su dni
-	public static void BuscarCliente(Connection connection, String BDNombre) throws SQLException {
+	public static void buscarCliente(Connection connection, String BDNombre) throws SQLException {
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("introduzca el DNI del cliente a buscar");
 		System.out.println("");
 		String dni = teclado.nextLine();
 
 		Statement consulta = null;
-		String query = "select nombre, apellido, numSerie, edad, email " + " from " + BDNombre + ".cliente"
+		String query = "select nombre, apellidos, edad, email " + " from " + BDNombre + ".cliente"
 				+ " WHERE dni = '" + dni + "'";
 
 		try {
@@ -193,8 +193,8 @@ public class Metodos {
 				String cliente = registro.getString("nombre");
 				System.out.println("Nombre: " + cliente);
 
-				String apellido = registro.getString("apellido");
-				System.out.println("Apellido: " + apellido);
+				String apellidos = registro.getString("apellidos");
+				System.out.println("Apellidos: " + apellidos);
 
 				String edad = registro.getString("edad");
 				System.out.println("Edad: " + edad + " años");
@@ -219,10 +219,10 @@ public class Metodos {
 	}
 
 	// Metodo para mostrar el listado de los clientes registrados
-	public static void ListadoCliente(Connection connection, String BDNombre) throws SQLException {
+	public static void listadoCliente(Connection connection, String BDNombre) throws SQLException {
 
 		Statement consulta = null;
-		String query = "select nombre, apellido, edad, dni, email " + " from " + BDNombre + ".cliente";
+		String query = "select nombre, apellidos, edad, dni, email " + " from " + BDNombre + ".cliente";
 
 		try {
 
@@ -240,8 +240,8 @@ public class Metodos {
 				String cliente = registro.getString("nombre");
 				System.out.println("Nombre: " + cliente);
 
-				String apellido = registro.getString("apellido");
-				System.out.println("Apellido: " + apellido);
+				String apellidos = registro.getString("apellidos");
+				System.out.println("Apellidos: " + apellidos);
 
 				String edad = registro.getString("edad");
 				System.out.println("Edad: " + edad + " años");
@@ -264,7 +264,7 @@ public class Metodos {
 
 	}
 
-	// Método para realizar devoluciones de patinetes (AÚN EN PROCESO)
+	// Método para realiar devoluciones de patinetes
 	public static void realizarDevolucion(Connection connection, String BDNombre) throws SQLException {
 
 		boolean exit = false;
@@ -332,13 +332,12 @@ public class Metodos {
 		} while (!exit);
 	}
 
-	// Método para exportar listados a ficheros TXT (AÚN EN PROCESO)
-	public static void ExportarArchivoTXT(Connection connection, String BDNombre) throws SQLException {
+	// Método para exportar el listado de patinetes NO ALQUILADOS a ficheros TXT 
+	public static void exportarListadoPatineteNoAlquiladoTXT(Connection connection, String BDNombre) throws SQLException {
 
-		String query = "";
 		Statement stmt = null;
 
-		query = "select numSerie, marca, color, modelo from " + BDNombre + ".patinete where disponible = '1' ";
+		String query = "select numSerie, marca, color, modelo, kmRecorridoPatinete from " + BDNombre + ".patinete where disponible = '1' ";
 
 		try {
 			stmt = connection.createStatement();
@@ -373,6 +372,11 @@ public class Metodos {
 				String modelo = rs.getString("modelo");
 				buff.write("Modelo: " + modelo);
 				buff.newLine();
+				
+				String kmRecorridoPatinete = rs.getString("kmRecorridoPatinete");
+				buff.write("Km recorridos: " + kmRecorridoPatinete + "km");
+				buff.newLine();
+				
 				buff.write("---------------------------------------------");
 				buff.newLine();
 				buff.newLine();
@@ -392,7 +396,208 @@ public class Metodos {
 		}
 
 	}
+	
+	
+		// Método para exportar el listado de patinetes ALQUILADOS a ficheros TXT 
+		public static void exportarListadoPatineteAlquiladoTXT(Connection connection, String BDNombre) throws SQLException {
 
+			Statement stmt = null;
+
+			String query = "select numSerie, marca, color, modelo, kmRecorridoPatinete from " + BDNombre + ".patinete where disponible = '0' ";
+
+			try {
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				FileWriter escritura = new FileWriter("C:\\Users\\Programming\\Desktop\\informes.txt");
+
+				// Creamos el buffer
+				BufferedWriter buff = new BufferedWriter(escritura);
+
+				buff.write("-- Listado de patinetes alquilados --");
+				buff.newLine();
+				buff.newLine();
+
+				while (rs.next()) {
+
+					// Crear archivo
+					buff.write("---------------------------------------------");
+					buff.newLine();
+					String numSerie = rs.getString("numSerie");
+					buff.write("Nº de Serie: " + numSerie);
+					buff.newLine();
+
+					String marca = rs.getString("marca");
+					buff.write("Marca: " + marca);
+					buff.newLine();
+
+					String color = rs.getString("color");
+					buff.write("Color: " + color);
+					buff.newLine();
+
+					String modelo = rs.getString("modelo");
+					buff.write("Modelo: " + modelo);
+					buff.newLine();
+					
+					String kmRecorridoPatinete = rs.getString("kmRecorridoPatinete");
+					buff.write("Km recorridos: " + kmRecorridoPatinete + "km");
+					buff.newLine();
+					
+					buff.write("---------------------------------------------");
+					buff.newLine();
+					buff.newLine();
+
+				}
+
+				System.out.println("El fichero se ha escrito y guardado correctamente!");
+
+				buff.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				stmt.close();
+			}
+
+		}
+
+		// Método para exportar el listado de TODOS los patinetes a ficheros TXT 
+		public static void exportarListadoTotalPatinetesTXT(Connection connection, String BDNombre) throws SQLException {
+
+			Statement stmt = null;
+
+			String query = "select * from " + BDNombre + ".patinete ";
+			
+			try {
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				FileWriter escritura = new FileWriter("C:\\Users\\Programming\\Desktop\\informes.txt");
+
+				// Creamos el buffer
+				BufferedWriter buff = new BufferedWriter(escritura);
+
+				buff.write("-- Listado total patinetes --");
+				buff.newLine();
+				buff.newLine();
+
+				while (rs.next()) {
+
+					// Crear archivo
+					buff.write("---------------------------------------------");
+					buff.newLine();
+					String numSerie = rs.getString("numSerie");
+					buff.write("Nº de Serie: " + numSerie);
+					buff.newLine();
+
+					String marca = rs.getString("marca");
+					buff.write("Marca: " + marca);
+					buff.newLine();
+
+					String color = rs.getString("color");
+					buff.write("Color: " + color);
+					buff.newLine();
+
+					String modelo = rs.getString("modelo");
+					buff.write("Modelo: " + modelo);
+					buff.newLine();
+					
+					String kmRecorridoPatinete = rs.getString("kmRecorridoPatinete");
+					buff.write("Km recorridos: " + kmRecorridoPatinete + "km");
+					buff.newLine();
+
+					
+					String disponible = rs.getString("disponible");
+					buff.write("Disponible: " + disponible);
+					buff.newLine();
+					
+					buff.write("---------------------------------------------");
+					buff.newLine();
+					buff.newLine();
+
+				}
+
+				System.out.println("El fichero se ha escrito y guardado correctamente!");
+
+				buff.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				stmt.close();
+			}
+
+		}		
+		
+		// Método para exportar el listado de TODOS los patinetes a ficheros TXT 
+		public static void exportarListadoClientesTXT(Connection connection, String BDNombre) throws SQLException {
+
+			Statement stmt = null;
+
+			String query = "select nombre, apellidos, edad, dni, email " + " from " + BDNombre + ".cliente";
+			
+			try {
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				FileWriter escritura = new FileWriter("C:\\Users\\Programming\\Desktop\\informes.txt");
+
+				// Creamos el buffer
+				BufferedWriter buff = new BufferedWriter(escritura);
+
+				buff.write("-- Listado clientes --");
+				buff.newLine();
+				buff.newLine();
+
+				while (rs.next()) {
+
+					// Crear archivo
+					buff.write("---------------------------------------------");
+					buff.newLine();
+					String cliente = rs.getString("nombre");
+					buff.write("Nombre: " + cliente);
+					buff.newLine();
+
+					String apellidos = rs.getString("apellidos");
+					buff.write("Apellidos: " + apellidos);
+					buff.newLine();
+
+					String edad = rs.getString("edad");
+					buff.write("Edad: " + edad + " años");
+					buff.newLine();
+
+					String dni = rs.getString("dni");
+					buff.write("DNI: " + dni);
+					buff.newLine();
+					
+					String email = rs.getString("email");
+					buff.write("Email: " + email);
+					buff.newLine();
+
+					buff.write("---------------------------------------------");
+					buff.newLine();
+					buff.newLine();
+
+				}
+
+				System.out.println("El fichero se ha escrito y guardado correctamente!");
+
+				buff.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				stmt.close();
+			}
+
+		}		
+		
 	private static void printSQLException(SQLException ex) {
 
 		ex.printStackTrace(System.err);
