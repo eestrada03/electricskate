@@ -12,7 +12,17 @@ import java.util.Scanner;
 public class Metodos {
 
 	static Scanner teclado = new Scanner(System.in);
-
+	
+	public static void createBaseDeDatos(Connection connection, String BDNombre) throws SQLException {
+		createPatinete(connection, BDNombre);
+		createCliente(connection, BDNombre);
+		createAdministrador(connection, BDNombre);
+		createAlquiler(connection, BDNombre);
+		cargaPatinete(connection, BDNombre);
+		cargaCliente(connection, BDNombre);
+		
+	}
+	
 	public static void createPatinete(Connection connection, String BDNombre) throws SQLException {
 
 		String createString = "create table " + BDNombre + ".patinete " + "(numSerie integer NOT NULL,"
