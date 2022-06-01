@@ -21,7 +21,11 @@ public class Principal {
 			// Metodos.createAlquiler(connection, "electricskate");
 			// Metodos.cargaPatinete(connection, "electricskate");
 			// Metodos.cargaCliente(connection, "electricskate");
-			// Metodos.listadoPatinetes(connection, "electricskate");
+			
+			//Metodos.listadoPatineteAlquilado(connection, "electricskate");
+			//Metodos.listadoPatineteNoAlquilado(connection, "electricskate");
+			//Metodos.listadoTotalPatinetes(connection, "electricskate");
+			
 			// Metodos.listadoCliente(connection, "electricskate");
 			// Metodos.buscarCliente(connection, "electricskate");
 
@@ -33,7 +37,7 @@ public class Principal {
 			// Metodos.exportarListadoPatineteNoAlquiladoTXT(connection, "electricskate");
 			// Metodos.exportarListadoTotalPatinetesTXT(connection, "electricskate");
 			// Metodos.exportarListadoClientesTXT(connection, "electricskate");ç
-			Metodos.añadirPatinete(connection, "electricskate");
+			//Metodos.añadirPatinete(connection, "electricskate");
 
 		} catch (SQLException e) {
 			printSQLException(e);
