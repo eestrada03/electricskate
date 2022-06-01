@@ -166,166 +166,123 @@ public class Metodos {
 
 	}
 
-	// metodo para buscar a los clientes registrados
-	public static void busquedaClientes(Connection connection, String BDNombre) throws SQLException {
-		boolean salir = false;
-		do {
+	// metodo para buscar a los clientes registrados mediante su dni
+	public static void buscarCliente(Connection connection, String BDNombre) throws SQLException {
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("introduzca el DNI del cliente a buscar");
+		System.out.println("");
+		String dni = teclado.nextLine();
+
+		Statement consulta = null;
+		String query = "select nombre, apellidos, edad, email " + " from " + BDNombre + ".cliente" + " WHERE dni = '"
+				+ dni + "'";
+
+		try {
+
+			consulta = connection.createStatement();
+			ResultSet registro = consulta.executeQuery(query);
 
 			System.out.println("");
-			System.out.println("=======================================");
-			System.out.println("=========BUSQUEDA DE CLIENTES==========");
-			System.out.println("=======================================");
-			System.out.println("");
-			System.out.println("1) Ver listado de clientes");
-			System.out.println("");
-			System.out.println("2) Buscar clientes mediante su dni");
-			System.out.println("");
-			System.out.println("3) Volver al menú principal");
-			System.out.println("");
-			System.out.println("=======================================");
-			System.out.println("===========Qué desea hacer?============");
-			System.out.println("=======================================");
-			System.out.println("");
-			int opcion = teclado.nextInt();
+			System.out.println("**** DATOS DEL CLIENTE CON EL DNI: " + dni + " ****");
 
-			switch (opcion) {
+			if (registro.next()) {
 
-			case 1:
-
-				Statement stmt = null;
-				String query = "select nombre, apellido, numSerie, edad, dni, email " + " from " + BDNombre
-						+ ".cliente";
-
-				try {
-
-					stmt = connection.createStatement();
-					ResultSet registro = stmt.executeQuery(query);
-
-					System.out.println("");
-					System.out.println("**** LISTADO DE LOS CLIENTES ****");
-
-					while (registro.next()) {
-
-						System.out.println("");
-						System.out.println("*************************************");
-
-						String cliente = registro.getString("nombre");
-						System.out.println("Nombre: " + cliente);
-
-						String apellido = registro.getString("apellido");
-						System.out.println("Apellido: " + apellido);
-
-						String edad = registro.getString("edad");
-						System.out.println("Edad: " + edad);
-
-						String numSerie = registro.getString("numSerie");
-						System.out.println("NumSerie: " + numSerie);
-
-						String dni = registro.getString("dni");
-						System.out.println("Dni: " + dni);
-
-						String email = registro.getString("email");
-						System.out.println("Email: " + email);
-
-						System.out.println("*************************************");
-					}
-
-				} catch (SQLException e) {
-					printSQLException(e);
-				} finally {
-					stmt.close();
-				}
-				break;
-
-			case 2:
-
-				teclado.nextLine();
 				System.out.println("");
-				System.out.println("introduzca el DNI del cliente a buscar");
+				System.out.println("*************************************************");
+
+				String cliente = registro.getString("nombre");
+				System.out.println("Nombre: " + cliente);
+
+				String apellidos = registro.getString("apellidos");
+				System.out.println("Apellidos: " + apellidos);
+
+				String edad = registro.getString("edad");
+				System.out.println("Edad: " + edad + " años");
+
+				String email = registro.getString("email");
+				System.out.println("Email: " + email);
+
 				System.out.println("");
-				String dni = teclado.nextLine();
+				System.out.println("*************************************************");
+
+			} else {
 				System.out.println("");
-
-				Statement consulta = null;
-				String consultar = "select nombre, apellido, numSerie, edad, email " + " from " + BDNombre + ".cliente"
-						+ " WHERE dni = '" + dni + "'";
-
-				try {
-
-					consulta = connection.createStatement();
-					ResultSet registro = consulta.executeQuery(consultar);
-
-					System.out.println("");
-					System.out.println("**** LISTA DE LOS CLIENTES CON EL DNI: " + dni + " ****");
-
-					if (registro.next()) {
-
-						System.out.println("");
-						System.out.println("*************************************");
-
-						String cliente = registro.getString("nombre");
-						System.out.println("Nombre: " + cliente);
-
-						String apellido = registro.getString("apellido");
-						System.out.println("Apellido: " + apellido);
-
-						String edad = registro.getString("edad");
-						System.out.println("Edad: " + edad);
-
-						String numSerie = registro.getString("numSerie");
-						System.out.println("NumSerie: " + numSerie);
-
-						String email = registro.getString("email");
-						System.out.println("Email: " + email);
-
-						System.out.println("*************************************");
-						System.out.println("");
-
-					} else {
-						System.out.println("");
-						System.out.println("dni incorrecto");
-					}
-
-				} catch (SQLException e) {
-					printSQLException(e);
-				} finally {
-					consulta.close();
-
-				}
-				break;
-
-			case 3:
-				salir = true;
-				System.out.println("salir al menú principal");
-				break;
-
-			default:
-
-				System.out.println("¡error! esta opcion no es valida");
+				System.out.println("dni incorrecto");
 			}
 
-		} while (!salir);
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			consulta.close();
+		}
 
 	}
 
-	// Método para realizar devoluciones de patinetes (AÚN EN PROCESO)
+	// Metodo para mostrar el listado de los clientes registrados
+	public static void listadoCliente(Connection connection, String BDNombre) throws SQLException {
+
+		Statement consulta = null;
+		String query = "select nombre, apellidos, edad, dni, email " + " from " + BDNombre + ".cliente";
+
+		try {
+
+			consulta = connection.createStatement();
+			ResultSet registro = consulta.executeQuery(query);
+
+			System.out.println("");
+			System.out.println("***** LISTADO DE LOS CLIENTES *******");
+
+			while (registro.next()) {
+
+				System.out.println("");
+				System.out.println("*************************************");
+
+				String cliente = registro.getString("nombre");
+				System.out.println("Nombre: " + cliente);
+
+				String apellidos = registro.getString("apellidos");
+				System.out.println("Apellidos: " + apellidos);
+
+				String edad = registro.getString("edad");
+				System.out.println("Edad: " + edad + " años");
+
+				String dni = registro.getString("dni");
+				System.out.println("Dni: " + dni);
+
+				String email = registro.getString("email");
+				System.out.println("Email: " + email);
+
+				System.out.println("");
+				System.out.println("*************************************");
+			}
+
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			consulta.close();
+		}
+
+	}
+
+	// Método para realiar devoluciones de patinetes
 	public static void realizarDevolucion(Connection connection, String BDNombre) throws SQLException {
 
 		boolean exit = false;
 
 		do {
 
-			System.out.println("introduzca el DNI del cliente con el patinete a devolver: ");
+			System.out.println("introduzca el Id del Alquiler con el patinete a devolver: ");
 			System.out.println("");
-			String dni = teclado.nextLine();
+			String idAlquiler = teclado.nextLine();
 
 			Statement stmt = null;
-			String comprobarDni = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE dni = '" + dni + "'";
+			String comprobarAlquiler = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '"
+					+ idAlquiler + "'";
 
 			try {
 
 				stmt = connection.createStatement();
-				ResultSet registro = stmt.executeQuery(comprobarDni);
+				ResultSet registro = stmt.executeQuery(comprobarAlquiler);
 
 				if (registro.next()) {
 
@@ -337,10 +294,11 @@ public class Metodos {
 
 					// Actualizamos los km recorridos por el cliente
 					stmt.executeUpdate("UPDATE " + BDNombre + ".alquiler SET kmRecorridoCliente = '"
-							+ kmRecorridoCliente + "'" + " WHERE dni = '" + dni + "'");
+							+ kmRecorridoCliente + "'" + " WHERE idAlquiler = '" + idAlquiler + "'");
 
 					// Actualizamos la tabla patinete y lo ponemos en disponible
-					ResultSet rs = stmt.executeQuery("SELECT numSerie FROM alquiler WHERE dni = '" + dni + "'");
+					ResultSet rs = stmt
+							.executeQuery("SELECT numSerie FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
 					rs.next();
 					int numSerie = rs.getInt("numSerie");
 
@@ -374,13 +332,14 @@ public class Metodos {
 		} while (!exit);
 	}
 
-	// Método para exportar listados a ficheros TXT (AÚN EN PROCESO)
-	public static void ExportarArchivoTXT(Connection connection, String BDNombre) throws SQLException {
+	// Método para exportar el listado de patinetes NO ALQUILADOS a ficheros TXT
+	public static void exportarListadoPatineteNoAlquiladoTXT(Connection connection, String BDNombre)
+			throws SQLException {
 
-		String query = "";
 		Statement stmt = null;
 
-		query = "select numSerie, marca, color, modelo from " + BDNombre + ".patinete where disponible = '1' ";
+		String query = "select numSerie, marca, color, modelo, kmRecorridoPatinete from " + BDNombre
+				+ ".patinete where disponible = '1' ";
 
 		try {
 			stmt = connection.createStatement();
@@ -415,6 +374,211 @@ public class Metodos {
 				String modelo = rs.getString("modelo");
 				buff.write("Modelo: " + modelo);
 				buff.newLine();
+
+				String kmRecorridoPatinete = rs.getString("kmRecorridoPatinete");
+				buff.write("Km recorridos: " + kmRecorridoPatinete + "km");
+				buff.newLine();
+
+				buff.write("---------------------------------------------");
+				buff.newLine();
+				buff.newLine();
+
+			}
+
+			System.out.println("El fichero se ha escrito y guardado correctamente!");
+
+			buff.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			stmt.close();
+		}
+
+	}
+
+	// Método para exportar el listado de patinetes ALQUILADOS a ficheros TXT
+	public static void exportarListadoPatineteAlquiladoTXT(Connection connection, String BDNombre) throws SQLException {
+
+		Statement stmt = null;
+
+		String query = "select numSerie, marca, color, modelo, kmRecorridoPatinete from " + BDNombre
+				+ ".patinete where disponible = '0' ";
+
+		try {
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			FileWriter escritura = new FileWriter("C:\\Users\\Programming\\Desktop\\informes.txt");
+
+			// Creamos el buffer
+			BufferedWriter buff = new BufferedWriter(escritura);
+
+			buff.write("-- Listado de patinetes alquilados --");
+			buff.newLine();
+			buff.newLine();
+
+			while (rs.next()) {
+
+				// Crear archivo
+				buff.write("---------------------------------------------");
+				buff.newLine();
+				String numSerie = rs.getString("numSerie");
+				buff.write("Nº de Serie: " + numSerie);
+				buff.newLine();
+
+				String marca = rs.getString("marca");
+				buff.write("Marca: " + marca);
+				buff.newLine();
+
+				String color = rs.getString("color");
+				buff.write("Color: " + color);
+				buff.newLine();
+
+				String modelo = rs.getString("modelo");
+				buff.write("Modelo: " + modelo);
+				buff.newLine();
+
+				String kmRecorridoPatinete = rs.getString("kmRecorridoPatinete");
+				buff.write("Km recorridos: " + kmRecorridoPatinete + "km");
+				buff.newLine();
+
+				buff.write("---------------------------------------------");
+				buff.newLine();
+				buff.newLine();
+
+			}
+
+			System.out.println("El fichero se ha escrito y guardado correctamente!");
+
+			buff.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			stmt.close();
+		}
+
+	}
+
+	// Método para exportar el listado de TODOS los patinetes a ficheros TXT
+	public static void exportarListadoTotalPatinetesTXT(Connection connection, String BDNombre) throws SQLException {
+
+		Statement stmt = null;
+
+		String query = "select * from " + BDNombre + ".patinete ";
+
+		try {
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			FileWriter escritura = new FileWriter("C:\\Users\\Programming\\Desktop\\informes.txt");
+
+			// Creamos el buffer
+			BufferedWriter buff = new BufferedWriter(escritura);
+
+			buff.write("-- Listado total patinetes --");
+			buff.newLine();
+			buff.newLine();
+
+			while (rs.next()) {
+
+				// Crear archivo
+				buff.write("---------------------------------------------");
+				buff.newLine();
+				String numSerie = rs.getString("numSerie");
+				buff.write("Nº de Serie: " + numSerie);
+				buff.newLine();
+
+				String marca = rs.getString("marca");
+				buff.write("Marca: " + marca);
+				buff.newLine();
+
+				String color = rs.getString("color");
+				buff.write("Color: " + color);
+				buff.newLine();
+
+				String modelo = rs.getString("modelo");
+				buff.write("Modelo: " + modelo);
+				buff.newLine();
+
+				String kmRecorridoPatinete = rs.getString("kmRecorridoPatinete");
+				buff.write("Km recorridos: " + kmRecorridoPatinete + "km");
+				buff.newLine();
+
+				String disponible = rs.getString("disponible");
+				buff.write("Disponible: " + disponible);
+				buff.newLine();
+
+				buff.write("---------------------------------------------");
+				buff.newLine();
+				buff.newLine();
+
+			}
+
+			System.out.println("El fichero se ha escrito y guardado correctamente!");
+
+			buff.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			stmt.close();
+		}
+
+	}
+
+	// Método para exportar el listado de TODOS los patinetes a ficheros TXT
+	public static void exportarListadoClientesTXT(Connection connection, String BDNombre) throws SQLException {
+
+		Statement stmt = null;
+
+		String query = "select nombre, apellidos, edad, dni, email " + " from " + BDNombre + ".cliente";
+
+		try {
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			FileWriter escritura = new FileWriter("C:\\Users\\Programming\\Desktop\\informes.txt");
+
+			// Creamos el buffer
+			BufferedWriter buff = new BufferedWriter(escritura);
+
+			buff.write("-- Listado clientes --");
+			buff.newLine();
+			buff.newLine();
+
+			while (rs.next()) {
+
+				// Crear archivo
+				buff.write("---------------------------------------------");
+				buff.newLine();
+				String cliente = rs.getString("nombre");
+				buff.write("Nombre: " + cliente);
+				buff.newLine();
+
+				String apellidos = rs.getString("apellidos");
+				buff.write("Apellidos: " + apellidos);
+				buff.newLine();
+
+				String edad = rs.getString("edad");
+				buff.write("Edad: " + edad + " años");
+				buff.newLine();
+
+				String dni = rs.getString("dni");
+				buff.write("DNI: " + dni);
+				buff.newLine();
+
+				String email = rs.getString("email");
+				buff.write("Email: " + email);
+				buff.newLine();
+
 				buff.write("---------------------------------------------");
 				buff.newLine();
 				buff.newLine();
@@ -595,110 +759,73 @@ public class Metodos {
 
 	}
 
-	public static void registrarNuevosUsuarios(Connection connection, String electricskate) throws SQLException {
-		boolean salir = false;
+	public static void registrarNuevosClientes(Connection connection, String electricskate) throws SQLException {
 
-		while (!salir) {
+		System.out.println("****registrar nuevo cliente****");
+		System.out.println("");
+		System.out.println("introduzca el nombre");
+		String nombre = teclado.nextLine();
+		System.out.println("introduzca los apellidos");
+		String apellidos = teclado.nextLine();
+		System.out.println("introduzca la edad");
+		int edad = teclado.nextInt();
+		System.out.println("introduzca el dni");
+		teclado.nextLine();
+		String dni = teclado.nextLine();
+		System.out.println("introduzca el email");
+		String email = teclado.nextLine();
+		Statement stmt = null;
 
-			System.out.println("==================================");
-			System.out.println("=====REGISTRAR NUEVOS USUARIOS=====");
-			System.out.println("===================================");
+		try {
+			stmt = connection.createStatement();
+			stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellidos + "',"
+					+ edad + ",'" + dni + "','" + email + "')");
 			System.out.println("");
-			System.out.println("1.Registrar nuevo usuario cliente");
-			System.out.println("");
-			System.out.println("2.Registrar nuevo usuario Administrador");
-			System.out.println("");
-			System.out.println("3.Volver al menú principal");
-			System.out.println("");
-			System.out.println("¿Qué desea hacer?");
-			int opciones = teclado.nextInt();
+			System.out.println("Usuario añadido correctamente");
 
-			switch (opciones) {
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
 
-			case 1:
-				teclado.nextLine();
-				System.out.println("****registrar nuevo cliente****");
-				System.out.println("");
-				System.out.println("introduzca el nombre");
-				String nombre = teclado.nextLine();
-				System.out.println("introduzca el apellido");
-				String apellido = teclado.nextLine();
-				System.out.println("introduzca la edad");
-				int edad = teclado.nextInt();
-				System.out.println("introduzca el dni");
-				teclado.nextLine();
-				String dni = teclado.nextLine();
-				System.out.println("introduzca el email");
-				String email = teclado.nextLine();
-				Statement stmt = null;
-
-				try {
-					stmt = connection.createStatement();
-
-					stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellido
-							+ "'," + edad + ",'" + dni + "','" + email + "')");
-					System.out.println("");
-					System.out.println("Usuario añadido correctamente");
-
-				} catch (SQLException e) {
-					printSQLException(e);
-				} finally {
-
-					connection.close();
-				}
-				break;
-
-			case 2:
-
-				teclado.nextLine();
-				System.out.println("****registrar nuevo Administrador****");
-				System.out.println("");
-				System.out.println("introduzca el nombre");
-				String nombre1 = teclado.nextLine();
-				System.out.println("introduzca el apellido");
-				String apellido1 = teclado.nextLine();
-				System.out.println("introduzca la edad");
-				int edad1 = teclado.nextInt();
-				System.out.println("introduzca el dni");
-				teclado.nextLine();
-				String dni1 = teclado.nextLine();
-				System.out.println("introduzca el email");
-				String email1 = teclado.nextLine();
-				System.out.println("introduzca el nombre de usuario");
-				String nombreUsuario = teclado.nextLine();
-				System.out.println("introduzca la contraseña");
-				String contraseña = teclado.nextLine();
-				Statement stmt1 = null;
-
-				try {
-					stmt1 = connection.createStatement();
-
-					stmt1.executeUpdate("insert into " + electricskate + ".administrador VALUES('" + nombre1 + "','"
-							+ apellido1 + "'," + edad1 + ",'" + dni1 + "','" + email1 + "','" + nombreUsuario + "','"
-							+ contraseña + "')");
-					System.out.println("");
-					System.out.println("Usuario administrador añadido correctamente");
-
-				} catch (SQLException e) {
-					printSQLException(e);
-				} finally {
-
-					connection.close();
-				}
-				break;
-			case 3:
-				salir = true;
-				System.out.println("volviendo al menú principal...");
-				break;
-
-			default:
-
-				System.out.println("¡error! esta opcion no es valida");
-			}
-
+			connection.close();
 		}
-		while (!salir)
-			;
+	}
+
+	public static void registrarNuevosAdministradores(Connection connection, String electricskate) throws SQLException {
+
+		System.out.println("****registrar nuevo Administrador****");
+		System.out.println("");
+		System.out.println("introduzca el nombre");
+		String nombre = teclado.nextLine();
+		System.out.println("introduzca el apellido");
+		String apellido = teclado.nextLine();
+		System.out.println("introduzca la edad");
+		int edad = teclado.nextInt();
+		System.out.println("introduzca el dni");
+		teclado.nextLine();
+		String dni = teclado.nextLine();
+		System.out.println("introduzca el email");
+		String email = teclado.nextLine();
+		System.out.println("introduzca el nombre de usuario");
+		String nombreUsuario = teclado.nextLine();
+		System.out.println("introduzca la contraseña");
+		String contraseña = teclado.nextLine();
+		Statement stmt1 = null;
+
+		try {
+			stmt1 = connection.createStatement();
+
+			stmt1.executeUpdate("insert into " + electricskate + ".administrador VALUES('" + nombre + "','" + apellido
+					+ "'," + edad + ",'" + dni + "','" + email + "','" + nombreUsuario + "','" + contraseña + "')");
+			System.out.println("");
+			System.out.println("Usuario administrador añadido correctamente");
+
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+
+			connection.close();
+		}
 
 	}
 
