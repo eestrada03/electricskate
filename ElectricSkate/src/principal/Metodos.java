@@ -166,145 +166,101 @@ public class Metodos {
 
 	}
 
-	// metodo para buscar a los clientes registrados
-	public static void busquedaClientes(Connection connection, String BDNombre) throws SQLException {
-		boolean salir = false;
-		do {
+	// metodo para buscar a los clientes registrados mediante su dni
+	public static void BuscarCliente(Connection connection, String BDNombre) throws SQLException {
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("introduzca el DNI del cliente a buscar");
+		System.out.println("");
+		String dni = teclado.nextLine();
+
+		Statement consulta = null;
+		String query = "select nombre, apellido, numSerie, edad, email " + " from " + BDNombre + ".cliente"
+				+ " WHERE dni = '" + dni + "'";
+
+		try {
+
+			consulta = connection.createStatement();
+			ResultSet registro = consulta.executeQuery(query);
 
 			System.out.println("");
-			System.out.println("=======================================");
-			System.out.println("=========BUSQUEDA DE CLIENTES==========");
-			System.out.println("=======================================");
-			System.out.println("");
-			System.out.println("1) Ver listado de clientes");
-			System.out.println("");
-			System.out.println("2) Buscar clientes mediante su dni");
-			System.out.println("");
-			System.out.println("3) Volver al menú principal");
-			System.out.println("");
-			System.out.println("=======================================");
-			System.out.println("===========Qué desea hacer?============");
-			System.out.println("=======================================");
-			System.out.println("");
-			int opcion = teclado.nextInt();
+			System.out.println("**** DATOS DEL CLIENTE CON EL DNI: " + dni + " ****");
 
-			switch (opcion) {
+			if (registro.next()) {
 
-			case 1:
-
-				Statement stmt = null;
-				String query = "select nombre, apellido, numSerie, edad, dni, email " + " from " + BDNombre
-						+ ".cliente";
-
-				try {
-
-					stmt = connection.createStatement();
-					ResultSet registro = stmt.executeQuery(query);
-
-					System.out.println("");
-					System.out.println("**** LISTADO DE LOS CLIENTES ****");
-
-					while (registro.next()) {
-
-						System.out.println("");
-						System.out.println("*************************************");
-
-						String cliente = registro.getString("nombre");
-						System.out.println("Nombre: " + cliente);
-
-						String apellido = registro.getString("apellido");
-						System.out.println("Apellido: " + apellido);
-
-						String edad = registro.getString("edad");
-						System.out.println("Edad: " + edad);
-
-						String numSerie = registro.getString("numSerie");
-						System.out.println("NumSerie: " + numSerie);
-
-						String dni = registro.getString("dni");
-						System.out.println("Dni: " + dni);
-
-						String email = registro.getString("email");
-						System.out.println("Email: " + email);
-
-						System.out.println("*************************************");
-					}
-
-				} catch (SQLException e) {
-					printSQLException(e);
-				} finally {
-					stmt.close();
-				}
-				break;
-
-			case 2:
-
-				teclado.nextLine();
 				System.out.println("");
-				System.out.println("introduzca el DNI del cliente a buscar");
+				System.out.println("*************************************************");
+
+				String cliente = registro.getString("nombre");
+				System.out.println("Nombre: " + cliente);
+
+				String apellido = registro.getString("apellido");
+				System.out.println("Apellido: " + apellido);
+
+				String edad = registro.getString("edad");
+				System.out.println("Edad: " + edad + " años");
+
+				String email = registro.getString("email");
+				System.out.println("Email: " + email);
+
 				System.out.println("");
-				String dni = teclado.nextLine();
+				System.out.println("*************************************************");
+
+			} else {
 				System.out.println("");
-
-				Statement consulta = null;
-				String consultar = "select nombre, apellido, numSerie, edad, email " + " from " + BDNombre + ".cliente"
-						+ " WHERE dni = '" + dni + "'";
-
-				try {
-
-					consulta = connection.createStatement();
-					ResultSet registro = consulta.executeQuery(consultar);
-
-					System.out.println("");
-					System.out.println("**** LISTA DE LOS CLIENTES CON EL DNI: " + dni + " ****");
-
-					if (registro.next()) {
-
-						System.out.println("");
-						System.out.println("*************************************");
-
-						String cliente = registro.getString("nombre");
-						System.out.println("Nombre: " + cliente);
-
-						String apellido = registro.getString("apellido");
-						System.out.println("Apellido: " + apellido);
-
-						String edad = registro.getString("edad");
-						System.out.println("Edad: " + edad);
-
-						String numSerie = registro.getString("numSerie");
-						System.out.println("NumSerie: " + numSerie);
-
-						String email = registro.getString("email");
-						System.out.println("Email: " + email);
-
-						System.out.println("*************************************");
-						System.out.println("");
-
-					} else {
-						System.out.println("");
-						System.out.println("dni incorrecto");
-					}
-
-				} catch (SQLException e) {
-					printSQLException(e);
-				} finally {
-					consulta.close();
-
-				}
-				break;
-
-			case 3:
-				salir = true;
-				System.out.println("salir al menú principal");
-				break;
-
-			default:
-
-				System.out.println("¡error! esta opcion no es valida");
+				System.out.println("dni incorrecto");
 			}
 
-		} while (!salir);
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			consulta.close();
+		}
+
+	}
+
+	// Metodo para mostrar el listado de los clientes registrados
+	public static void ListadoCliente(Connection connection, String BDNombre) throws SQLException {
+
+		Statement consulta = null;
+		String query = "select nombre, apellido, edad, dni, email " + " from " + BDNombre + ".cliente";
+
+		try {
+
+			consulta = connection.createStatement();
+			ResultSet registro = consulta.executeQuery(query);
+
+			System.out.println("");
+			System.out.println("***** LISTADO DE LOS CLIENTES *******");
+
+			while (registro.next()) {
+
+				System.out.println("");
+				System.out.println("*************************************");
+
+				String cliente = registro.getString("nombre");
+				System.out.println("Nombre: " + cliente);
+
+				String apellido = registro.getString("apellido");
+				System.out.println("Apellido: " + apellido);
+
+				String edad = registro.getString("edad");
+				System.out.println("Edad: " + edad + " años");
+
+				String dni = registro.getString("dni");
+				System.out.println("Dni: " + dni);
+
+				String email = registro.getString("email");
+				System.out.println("Email: " + email);
+
+				System.out.println("");
+				System.out.println("*************************************");
+			}
+
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			consulta.close();
+		}
 
 	}
 
@@ -320,7 +276,8 @@ public class Metodos {
 			String idAlquiler = teclado.nextLine();
 
 			Statement stmt = null;
-			String comprobarAlquiler = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '" + idAlquiler + "'";
+			String comprobarAlquiler = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '"
+					+ idAlquiler + "'";
 
 			try {
 
@@ -340,7 +297,8 @@ public class Metodos {
 							+ kmRecorridoCliente + "'" + " WHERE idAlquiler = '" + idAlquiler + "'");
 
 					// Actualizamos la tabla patinete y lo ponemos en disponible
-					ResultSet rs = stmt.executeQuery("SELECT numSerie FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
+					ResultSet rs = stmt
+							.executeQuery("SELECT numSerie FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
 					rs.next();
 					int numSerie = rs.getInt("numSerie");
 

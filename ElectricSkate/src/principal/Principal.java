@@ -22,9 +22,10 @@ public class Principal {
 			// Metodos.cargaPatinete(connection,"electricskate");
 			// Metodos.cargaCliente(connection, "electricskate");
 			// Metodos.listadoPatinetes(connection, "electricskate");
-			// Metodos.busquedaClientes(connection, "electricskate");
+			// Metodos.ListadoCliente(connection, "electricskate");
+			// Metodos.BuscarCliente(connection, "electricskate");
 
-			Metodos.registrarNuevosUsuarios(connection, "electricskate");
+			//Metodos.registrarNuevosUsuarios(connection, "electricskate");
 			//Metodos.realizarDevolucion(connection, "electricskate");
 			// Metodos.ExportarArchivoTXT(connection, "electricskate");
 
