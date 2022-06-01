@@ -25,7 +25,7 @@ public class Principal {
 			// Metodos.listadoCliente(connection, "electricskate");
 			// Metodos.buscarCliente(connection, "electricskate");
 
-			//Metodos.registrarNuevosUsuarios(connection, "electricskate");
+			Metodos.registrarNuevosUsuarios(connection, "electricskate");
 			
 			//Metodos.realizarDevolucion(connection, "electricskate");
 			//Metodos.exportarListadoPatineteAlquiladoTXT(connection, "electricskate");

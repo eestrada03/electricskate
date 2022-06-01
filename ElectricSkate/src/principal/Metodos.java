@@ -784,8 +784,8 @@ public class Metodos {
 				System.out.println("");
 				System.out.println("introduzca el nombre");
 				String nombre = teclado.nextLine();
-				System.out.println("introduzca el apellido");
-				String apellido = teclado.nextLine();
+				System.out.println("introduzca los apellidos");
+				String apellidos = teclado.nextLine();
 				System.out.println("introduzca la edad");
 				int edad = teclado.nextInt();
 				System.out.println("introduzca el dni");
@@ -798,7 +798,7 @@ public class Metodos {
 				try {
 					stmt = connection.createStatement();
 
-					stmt.executeUpdate("insert into " + proyecto + ".cliente VALUES('" + nombre + "','" + apellido
+					stmt.executeUpdate("insert into " + proyecto + ".cliente VALUES('" + nombre + "','" + apellidos
 							+ "'," + edad + ",'" + dni + "','" + email + "')");
 					System.out.println("");
 					System.out.println("Usuario añadido correctamente");
