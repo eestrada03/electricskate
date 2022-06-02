@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Metodos {
 
 	static Scanner teclado = new Scanner(System.in);
-	
+
 	public static void createBaseDeDatos(Connection connection, String BDNombre) throws SQLException {
 		createPatinete(connection, BDNombre);
 		createCliente(connection, BDNombre);
@@ -21,9 +21,9 @@ public class Metodos {
 		cargaAdministrador(connection, BDNombre);
 		cargaPatinete(connection, BDNombre);
 		cargaCliente(connection, BDNombre);
-		
+
 	}
-	
+
 	public static void createPatinete(Connection connection, String BDNombre) throws SQLException {
 
 		String createString = "create table " + BDNombre + ".patinete " + "(numSerie integer NOT NULL,"
@@ -46,9 +46,9 @@ public class Metodos {
 		}
 
 	}
-	
+
 	public static void menuPrincipal(Connection connection, String BDNombre) throws SQLException, InterruptedException {
-		
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("=============MENÚ==============");
@@ -72,55 +72,63 @@ public class Metodos {
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
 		int opcion = teclado.nextInt();
-		
+
 		switch (opcion) {
-		
-		case 1:	buscarCliente(connection, BDNombre);
-			
+
+		case 1:
+			buscarCliente(connection, BDNombre);
+
 			break;
-			
-		case 2:	registrarNuevoUsuario(connection, BDNombre);
-			
+
+		case 2:
+			registrarNuevoUsuario(connection, BDNombre);
+
 			break;
-			
-		case 3:	registrarPatinete(connection, BDNombre);
-			
+
+		case 3:
+			registrarPatinete(connection, BDNombre);
+
 			break;
-			
-		case 4:	listados(connection, BDNombre);
-			
+
+		case 4:
+			listados(connection, BDNombre);
+
 			break;
-			
+
 		case 5:
-			
+			realizarAlquiler(connection, BDNombre);
+
 			break;
-			
-		case 6:	realizarDevolucion(connection, BDNombre);
-				
+
+		case 6:
+			realizarDevolucion(connection, BDNombre);
+
 			break;
-			
-		case 7:	exportarTXT(connection, BDNombre);
-				
+
+		case 7:
+			exportarTXT(connection, BDNombre);
+
 			break;
-			
-		case 8:	LogIn(connection, BDNombre);
-			
+
+		case 8:
+			LogIn(connection, BDNombre);
+
 			break;
 
 		default:
-			
+
 			System.out.println("\n¡Error!, elija una opción disponible");
 			Thread.sleep(5000);
 			menuPrincipal(connection, BDNombre);
-			
+
 			break;
 		}
-		
-		
+
 	}
 
-	public static void registrarNuevoUsuario(Connection connection, String BDNombre) throws SQLException, InterruptedException {
-		
+	public static void registrarNuevoUsuario(Connection connection, String BDNombre)
+			throws SQLException, InterruptedException {
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("====REGISTRAR NUEVO USUARIO====");
@@ -134,33 +142,36 @@ public class Metodos {
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
 		int opcion = teclado.nextInt();
-		
+
 		switch (opcion) {
-		
-		case 1:	registrarNuevosClientes(connection, BDNombre);
-	
-			break;
-			
-		case 2:	registrarNuevosAdministradores(connection, BDNombre);
+
+		case 1:
+			registrarNuevosClientes(connection, BDNombre);
 
 			break;
-		
-		case 3:	menuPrincipal(connection, BDNombre);
+
+		case 2:
+			registrarNuevosAdministradores(connection, BDNombre);
+
+			break;
+
+		case 3:
+			menuPrincipal(connection, BDNombre);
 
 			break;
 
 		default:
-			
+
 			System.out.println("\n¡Error!, elija una opción disponible");
 			Thread.sleep(5000);
 			registrarNuevoUsuario(connection, BDNombre);
 			break;
 		}
-			
+
 	}
-	
+
 	public static void listados(Connection connection, String BDNombre) throws SQLException, InterruptedException {
-		
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("============LISTADOS===========");
@@ -174,33 +185,37 @@ public class Metodos {
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
 		int opcion = teclado.nextInt();
-		
+
 		switch (opcion) {
-		
-		case 1:	listadoCliente(connection, BDNombre);
-	
-			break;
-			
-		case 2:	listadoPatinetes(connection, BDNombre);
+
+		case 1:
+			listadoCliente(connection, BDNombre);
 
 			break;
-		
-		case 3:	menuPrincipal(connection, BDNombre);
+
+		case 2:
+			listadoPatinetes(connection, BDNombre);
+
+			break;
+
+		case 3:
+			menuPrincipal(connection, BDNombre);
 
 			break;
 
 		default:
-			
+
 			System.out.println("\n¡Error!, elija una opción disponible");
 			Thread.sleep(5000);
 			listados(connection, BDNombre);
 			break;
 		}
-			
+
 	}
-	
-	public static void listadoPatinetes(Connection connection, String BDNombre) throws SQLException, InterruptedException {
-		
+
+	public static void listadoPatinetes(Connection connection, String BDNombre)
+			throws SQLException, InterruptedException {
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("=====LISTADOS DE PATINETES=====");
@@ -216,37 +231,41 @@ public class Metodos {
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
 		int opcion = teclado.nextInt();
-		
+
 		switch (opcion) {
-		
-		case 1:	listadoPatineteAlquilado(connection, BDNombre);
-				
-			break;
-			
-		case 2:	listadoPatineteNoAlquilado(connection, BDNombre);
+
+		case 1:
+			listadoPatineteAlquilado(connection, BDNombre);
 
 			break;
-		
-		case 3:	listadoCompletoPatinetes(connection, BDNombre);
+
+		case 2:
+			listadoPatineteNoAlquilado(connection, BDNombre);
 
 			break;
-		
-		case 4:	listados(connection, BDNombre);
+
+		case 3:
+			listadoCompletoPatinetes(connection, BDNombre);
+
+			break;
+
+		case 4:
+			listados(connection, BDNombre);
 
 			break;
 
 		default:
-			
+
 			System.out.println("\n¡Error!, elija una opción disponible");
 			Thread.sleep(5000);
 			listadoPatinetes(connection, BDNombre);
 			break;
 		}
-			
+
 	}
-	
-	public static void exportarTXT(Connection connection, String BDNombre) throws SQLException, InterruptedException{
-		
+
+	public static void exportarTXT(Connection connection, String BDNombre) throws SQLException, InterruptedException {
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("=======Exportar listados=======");
@@ -265,41 +284,46 @@ public class Metodos {
 		System.out.print("Seleccione una opción: ");
 		System.out.println("");
 		int opcion = teclado.nextInt();
-		
+
 		switch (opcion) {
-		
-		case 1:	exportarListadoClientesTXT(connection, BDNombre);
-	
-			break;
-			
-		case 2:	exportarListadoPatineteAlquiladoTXT(connection, BDNombre);
+
+		case 1:
+			exportarListadoClientesTXT(connection, BDNombre);
 
 			break;
-		
-		case 3:	exportarListadoPatineteNoAlquiladoTXT(connection, BDNombre);
+
+		case 2:
+			exportarListadoPatineteAlquiladoTXT(connection, BDNombre);
 
 			break;
-		
-		case 4:	exportarListadoCompletoPatinetesTXT(connection, BDNombre);
+
+		case 3:
+			exportarListadoPatineteNoAlquiladoTXT(connection, BDNombre);
 
 			break;
-			
-		case 5:	menuPrincipal(connection, BDNombre);
 
-		break;
+		case 4:
+			exportarListadoCompletoPatinetesTXT(connection, BDNombre);
+
+			break;
+
+		case 5:
+			menuPrincipal(connection, BDNombre);
+
+			break;
 
 		default:
-			
+
 			System.out.println("\n¡Error!, elija una opción disponible");
 			Thread.sleep(5000);
 			exportarTXT(connection, BDNombre);
 			break;
 		}
-		
+
 	}
-	
-	public static void LogIn(Connection connection, String BDNombre) throws SQLException, InterruptedException{
-		
+
+	public static void LogIn(Connection connection, String BDNombre) throws SQLException, InterruptedException {
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("=========ELECTRICSKATE=========");
@@ -308,25 +332,24 @@ public class Metodos {
 		System.out.println("             LOGIN");
 		System.out.println("");
 		System.out.println("");
-				
+
 		System.out.print("Usuario: ");
 		String nombreUsuario = teclado.nextLine();
 
 		System.out.println("");
 		System.out.print("Contraseña: ");
 		String contraseña = teclado.nextLine();
-					
+
 		menuPrincipal(connection, BDNombre);
-		
+
 	}
-	
-	
+
 	// metodo para crear la tabla clientes
 	public static void createCliente(Connection connection, String BDNombre) throws SQLException {
 
 		String createString = "create table " + BDNombre + ".cliente " + "(nombre varchar(40) NOT NULL,"
 				+ "apellidos varchar(40) NOT NULL," + "edad integer(40) NOT NULL," + "dni varchar(40) NOT NULL,"
-				+ "email varchar(40) NOT NULL," + "PRIMARY KEY (dni))";
+				+ "email varchar(40) NOT NULL," + "AlquilerActivo bit NOT NULL ," + "PRIMARY KEY (dni))";
 
 		Statement stmt = null;
 
@@ -373,7 +396,7 @@ public class Metodos {
 	// metodo para crear la tabla Alquiler
 	public static void createAlquiler(Connection connection, String BDNombre) throws SQLException {
 
-		String createString = "create table " + BDNombre + ".alquiler " + "(idAlquiler integer NOT NULL,"
+		String createString = "create table " + BDNombre + ".alquiler " + "(idAlquiler integer NOT NULL AUTO_INCREMENT,"
 				+ "dni varchar(40) NOT NULL," + "numSerie integer NOT NULL," + "fechaAlquiler date NOT NULL,"
 				+ "fechaDevolucion date NOT NULL," + "kmRecorridoCliente float(40)," + "PRIMARY KEY (idAlquiler),"
 				+ "FOREIGN KEY (dni) REFERENCES cliente (dni),"
@@ -395,35 +418,34 @@ public class Metodos {
 		}
 
 	}
-	
+
 	// Metodo para insertar los patinetes
-		public static void cargaAdministrador(Connection connection, String BDNombre) throws SQLException {
+	public static void cargaAdministrador(Connection connection, String BDNombre) throws SQLException {
 
-			Statement stmt = null;
+		Statement stmt = null;
 
-			try {
+		try {
 
-				stmt = connection.createStatement();
+			stmt = connection.createStatement();
 
-				
-				stmt.executeUpdate("INSERT INTO " + BDNombre + ".administrador VALUES ("
-						+ "'Reginaldo','Manga Angue',23, 'X66655544', 'reginaldo@estudiante.edib.es', 'Regi', '1234')");
-				stmt.executeUpdate("INSERT INTO " + BDNombre + ".administrador VALUES ("
-						+ "'Jose','Paredes',125, '00000001A','jose@estudiante.edib.es', 'jesucristo', 'password')");
-				stmt.executeUpdate("INSERT INTO " + BDNombre + ".administrador VALUES ("
-						+ "'Kike','Estrada',18, '12345678K', 'kike@estudiante.edib.es', 'Kiko', '123456')");
+			stmt.executeUpdate("INSERT INTO " + BDNombre + ".administrador VALUES ("
+					+ "'Reginaldo','Manga Angue',23, 'X66655544', 'reginaldo@estudiante.edib.es', 'Regi', '1234')");
+			stmt.executeUpdate("INSERT INTO " + BDNombre + ".administrador VALUES ("
+					+ "'Jose','Paredes',125, '00000001A','jose@estudiante.edib.es', 'jesucristo', 'password')");
+			stmt.executeUpdate("INSERT INTO " + BDNombre + ".administrador VALUES ("
+					+ "'Kike','Estrada',18, '12345678K', 'kike@estudiante.edib.es', 'Kiko', '123456')");
 
-				System.out.println("");
-				System.out.println("¡Se han agregado 3 administradores a la tabla Administrador!");
+			System.out.println("");
+			System.out.println("¡Se han agregado 3 administradores a la tabla Administrador!");
 
-			} catch (SQLException e) {
-				printSQLException(e);
-			} finally {
-				stmt.close();
-			}
-
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			stmt.close();
 		}
-	
+
+	}
+
 	// Metodo para insertar los patinetes
 	public static void cargaPatinete(Connection connection, String BDNombre) throws SQLException {
 
@@ -460,12 +482,13 @@ public class Metodos {
 
 			stmt = connection.createStatement();
 
+			// CAMPOS EQUIPO: TEAM_ID, EQ_NOMBRE, ESTADIO, POBLACION, PROVINCIA, COD_POSTAL
 			stmt.executeUpdate("INSERT INTO " + BDNombre + ".cliente VALUES ("
-					+ "'Jose','Maria',35, 'X45678990', 'josemaria@docente.edib.es')");
+					+ "'Jose','Maria',35, 'X45678990', 'josemaria@docente.edib.es', 0)");
 			stmt.executeUpdate("INSERT INTO " + BDNombre + ".cliente VALUES ("
-					+ "'Laura','Montenegro',32, 'Y76589006','lauramontenegro@docente.edib.es')");
+					+ "'Laura','Montenegro',32, 'Y76589006','lauramontenegro@docente.edib.es', 0)");
 			stmt.executeUpdate("INSERT INTO " + BDNombre + ".cliente VALUES ("
-					+ "'Ivan','Suarez',25, 'X87623790', 'ivansuarez@docente.edib.es')");
+					+ "'Ivan','Suarez',25, 'X87623790', 'ivansuarez@docente.edib.es', 0)");
 
 			System.out.println("");
 			System.out.println("¡Se han agregado 3 clientes a la tabla Cliente!");
@@ -481,13 +504,13 @@ public class Metodos {
 	// metodo para buscar a los clientes registrados mediante su dni
 	public static void buscarCliente(Connection connection, String BDNombre) throws SQLException {
 		Scanner teclado = new Scanner(System.in);
-		
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("========BUSCAR CLIENTE=========");
 		System.out.println("===============================");
 		System.out.println("");
-		
+
 		System.out.print("introduzca el DNI del cliente a buscar: ");
 		System.out.println("");
 		String dni = teclado.nextLine();
@@ -623,6 +646,16 @@ public class Metodos {
 					rs.next();
 					int numSerie = rs.getInt("numSerie");
 
+					ResultSet alqact = stmt.executeQuery(
+							"select AlquilerActivo from cliente where dni = (select dni from alquiler natural join cliente where idAlquiler = "
+									+ idAlquiler + ")");
+					int AlquilerActivo = 0;
+					while (alqact.next()) {
+
+						AlquilerActivo = alqact.getInt("AlquilerActivo");
+
+					}
+
 					stmt.executeUpdate(
 							"UPDATE " + BDNombre + ".patinete SET disponible = 1 WHERE numSerie =" + numSerie);
 
@@ -635,6 +668,16 @@ public class Metodos {
 					stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET kmRecorridoPatinete = '"
 							+ (kmRecorridoPatinete + kmRecorridoCliente) + "'" + " WHERE numSerie =" + numSerie);
 
+					if (AlquilerActivo == 1) {
+
+						stmt.executeUpdate(
+								"update cliente set AlquilerActivo = 0 where dni = (select dni from alquiler natural join cliente where idAlquiler = "
+										+ idAlquiler + ")");
+
+					} else {
+
+						System.out.println("El cliente ya posee un patinete, alquiler rechazado.");
+					}
 					System.out.println("");
 					System.out.println("Se ha devuelto el patinete correctamente.");
 
@@ -705,7 +748,7 @@ public class Metodos {
 				buff.newLine();
 
 			}
-			
+
 			System.out.println("El fichero se ha escrito y guardado correctamente!");
 
 			buff.close();
@@ -937,7 +980,7 @@ public class Metodos {
 	}
 
 	public static void registrarNuevosClientes(Connection connection, String electricskate) throws SQLException {
-		
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("====REGISTRAR NUEVO CLIENTE====");
@@ -972,7 +1015,7 @@ public class Metodos {
 	}
 
 	public static void registrarNuevosAdministradores(Connection connection, String electricskate) throws SQLException {
-		
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("=REGISTRAR NUEVO ADMINISTRADOR=");
@@ -1015,7 +1058,7 @@ public class Metodos {
 	public static void listadoPatineteAlquilado(Connection con, String BDNombre) throws SQLException {
 
 		Statement stmt = null;
-		
+
 		System.out.println("");
 		System.out.println("================================");
 		System.out.println("==LISTADO PATINETES ALQUILADOS==");
@@ -1157,7 +1200,7 @@ public class Metodos {
 
 		System.out.println("Introduzca los valores correspondientes");
 		System.out.println("");
-		
+
 		System.out.print("Nº Serie: ");
 		int numSerie = teclado.nextInt();
 		System.out.println(" ");
@@ -1193,5 +1236,78 @@ public class Metodos {
 			connection.close();
 		}
 
+	}
+
+	public static void realizarAlquiler(Connection connection, String BDnom) throws SQLException {
+
+		System.out.println("-------------------");
+		System.out.println(" REALIZAR ALQUILER ");
+		System.out.println("-------------------");
+		
+		System.out.println("Ha seleccionado el método realizar alquiler.");
+		System.out.println("Introduzca los valores correspondientes:");
+		
+		System.out.print("DNI: ");
+		String dni = teclado.nextLine();
+		
+		System.out.println(" ");
+		
+		System.out.print("Nº de serie: ");
+		int numSerie = teclado.nextInt();
+		System.out.println(" ");
+		
+		teclado.nextLine();
+		System.out.print("[0000-00-00] ");
+		System.out.print("Fecha Alquiler: ");
+		
+		String dateAlquiler = teclado.nextLine();
+		System.out.println(" ");
+		
+		
+		System.out.print("[0000-00-00] ");
+		System.out.print("Fecha Devolución: ");
+		String dateDevolucion = teclado.nextLine();
+		System.out.println(" ");
+	
+		
+		Statement stmt = null;
+
+		try {
+			stmt = connection.createStatement();
+			
+			ResultSet alqact = stmt.executeQuery("select AlquilerActivo from cliente where dni = '" + dni + "'");
+			int AlquilerActivo = 0;
+			while (alqact.next()) {
+			
+			AlquilerActivo = alqact.getInt("AlquilerActivo");
+			
+			if (AlquilerActivo == 1) {
+				
+				System.out.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler");
+				
+			}else {
+				
+				stmt.executeUpdate("insert into " + BDnom + ".alquiler VALUES(NULL,'" + dni + "','" +  numSerie
+						+ "','" + dateAlquiler + "','" + dateDevolucion + "',NULL)");
+				System.out.println("");
+				
+				
+				stmt.executeUpdate("update patinete set disponible = 0 where numSerie = " + numSerie);
+				stmt.executeUpdate("update cliente set AlquilerActivo = 1 where dni = '" + dni +"'");
+
+				System.out.println("Se ha añadido el alquiler correctamente.");
+				System.out.println("El patinete con nº " + numSerie + " ya no se encuentra disponible.");
+				
+				
+			}
+
+			}
+		} catch (SQLException e) {
+				printSQLException(e);
+			} finally {
+				stmt.close();
+			}
+	
+	
 	}
 }
