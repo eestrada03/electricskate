@@ -111,6 +111,10 @@ public class Metodos {
 			break;
 
 		case 8:
+			
+			System.out.println("");
+			System.out.println("Saliendo del programa...");
+			Thread.sleep(4000);
 			LogIn(connection, BDNombre);
 
 			break;
@@ -118,7 +122,7 @@ public class Metodos {
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
-			Thread.sleep(5000);
+			Thread.sleep(4000);
 			menuPrincipal(connection, BDNombre);
 
 			break;
@@ -653,7 +657,7 @@ public class Metodos {
 			System.out.println("======REALIZAR DEVOLUCIÓN======");
 			System.out.println("===============================");
 			System.out.println("");
-			System.out.println("introduzca el Id del Alquiler con el patinete a devolver: ");
+			System.out.print("introduzca el Id del Alquiler con el patinete a devolver: ");
 			System.out.println("");
 			String idAlquiler = teclado.nextLine();
 
@@ -669,7 +673,7 @@ public class Metodos {
 				if (registro.next()) {
 
 					System.out.println("");
-					System.out.println("introduzca los kilometros recorridos por el cliente: ");
+					System.out.print("introduzca los kilometros recorridos por el cliente: ");
 					System.out.println("");
 
 					double kmRecorridoCliente = teclado.nextDouble();

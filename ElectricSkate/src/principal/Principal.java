@@ -28,7 +28,7 @@ public class Principal {
 			// Metodos.registrarNuevosAdministradores(connection, "electricskate");
 			
 			// Metodos.realizarAlquiler(connection, "electricskate");
-			// Metodos.realizarDevolucion(connection, "electricskate");
+			 Metodos.realizarDevolucion(connection, "electricskate");
 			// Metodos.exportarListadoPatineteAlquiladoTXT(connection, "electricskate");
 			// Metodos.exportarListadoPatineteNoAlquiladoTXT(connection, "electricskate");
 			// Metodos.exportarListadoCompletoPatinetesTXT(connection, "electricskate");
@@ -36,7 +36,7 @@ public class Principal {
 			// Metodos.registrarPatinete(connection, "electricskate");
 			
 			//Metodos.menuPrincipal(connection, "electricskate");
-			 Metodos.LogIn(connection, "electricskate");
+			 //Metodos.LogIn(connection, "electricskate");
 
 		} catch (SQLException e) {
 			printSQLException(e);
