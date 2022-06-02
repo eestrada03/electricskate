@@ -339,9 +339,38 @@ public class Metodos {
 		System.out.println("");
 		System.out.print("Contraseña: ");
 		String contraseña = teclado.nextLine();
+	
+		Statement consulta = null;
+		String queryUsario = "select * " + " from " + BDNombre + ".administrador" + " WHERE nombreUsuario = '"
+				+ nombreUsuario + "'" + " AND contraseña = '" + contraseña + "'";
+		
+		try {
 
-		menuPrincipal(connection, BDNombre);
+			consulta = connection.createStatement();
+			ResultSet registro = consulta.executeQuery(queryUsario);
 
+			System.out.println("");
+
+			if (registro.next()) {
+				
+				System.out.println("Bienvenido " +nombreUsuario);
+				Thread.sleep(3000);
+				menuPrincipal(connection, BDNombre);
+			} else {
+				
+				System.out.println("¡Error!, usuario o contraseña incorrecto");
+				Thread.sleep(3000);
+				LogIn(connection, BDNombre);
+			}
+			
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		} finally {
+			consulta.close();
+		}
+			
+		
 	}
 
 	// metodo para crear la tabla clientes
@@ -419,7 +448,7 @@ public class Metodos {
 
 	}
 
-	// Metodo para insertar los patinetes
+	// Metodo para insertar los administradores
 	public static void cargaAdministrador(Connection connection, String BDNombre) throws SQLException {
 
 		Statement stmt = null;
@@ -614,13 +643,18 @@ public class Metodos {
 		boolean exit = false;
 
 		do {
-
+			
+			System.out.println("");
+			System.out.println("===============================");
+			System.out.println("======REALIZAR DEVOLUCIÓN======");
+			System.out.println("===============================");
+			System.out.println("");
 			System.out.println("introduzca el Id del Alquiler con el patinete a devolver: ");
 			System.out.println("");
 			String idAlquiler = teclado.nextLine();
 
 			Statement stmt = null;
-			String comprobarAlquiler = "SELECT numSerie " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '"
+			String comprobarAlquiler = "SELECT numSerie, dni " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '"
 					+ idAlquiler + "'";
 
 			try {
@@ -1240,12 +1274,14 @@ public class Metodos {
 
 	public static void realizarAlquiler(Connection connection, String BDnom) throws SQLException {
 
-		System.out.println("-------------------");
-		System.out.println(" REALIZAR ALQUILER ");
-		System.out.println("-------------------");
+		System.out.println("");
+		System.out.println("===============================");
+		System.out.println("======REALIZAR ALQUILER========");
+		System.out.println("===============================");
+		System.out.println("");
 		
-		System.out.println("Ha seleccionado el método realizar alquiler.");
 		System.out.println("Introduzca los valores correspondientes:");
+		System.out.println("");
 		
 		System.out.print("DNI: ");
 		String dni = teclado.nextLine();
