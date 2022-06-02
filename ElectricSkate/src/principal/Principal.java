@@ -1,5 +1,13 @@
 package principal;
 
+import metodos.alquiler.Alquiler;
+import metodos.buscar.Buscar;
+import metodos.devolucion.Devolucion;
+import metodos.listado.Listado;
+import metodos.menus.Menus;
+import metodos.registrar.Registrar;
+import metodos.tablas.Tablas;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,28 +23,25 @@ public class Principal {
 			System.out.println("¡Conexión establecida correctamente!");
 
 			// creamos la base de datos
-			// Metodos.createBaseDeDatos(connection, "electricskate");
-					
-			//Metodos.listadoPatineteAlquilado(connection, "electricskate");
-			//Metodos.listadoPatineteNoAlquilado(connection, "electricskate");
-			//Metodos.listadoCompletoPatinetes(connection, "electricskate");
+			//Tablas.createBaseDeDatos(connection, "electricskate");
 			
-			// Metodos.listadoCliente(connection, "electricskate");
-			// Metodos.buscarCliente(connection, "electricskate");
+			//Buscar.cliente(connection, "electricskate");
+			
+			//Registrar.nuevoAdministradore(connection, "electricskate");
+			//Registrar.nuevoCliente(connection, "electricskate");
+			//Registrar.nuevopatinete(connection, "electricskate");
+			
+			//Listado.clientes(connection, "electricskate");
+			//Listado.completoPatinetes(connection, "electricskate");
+			//Listado.patinetesAlquilados(connection, "electricskate");
+			//Listado.patinetesNoAlquilados(connection, "electricskate");
+			
+			//Devolucion.realizarDevolucion(connection, "electricskate");
+			//Alquiler.realizarAlquiler(connection, "electricskate");
+						
+			//Menus.menuPrincipal(connection, "electricskate");
+			//Menus.LogIn(connection, "electricskate");
 
-			// Metodos.registrarNuevosClientes(connection, "electricskate");
-			// Metodos.registrarNuevosAdministradores(connection, "electricskate");
-			
-			// Metodos.realizarAlquiler(connection, "electricskate");
-			 Metodos.realizarDevolucion(connection, "electricskate");
-			// Metodos.exportarListadoPatineteAlquiladoTXT(connection, "electricskate");
-			// Metodos.exportarListadoPatineteNoAlquiladoTXT(connection, "electricskate");
-			// Metodos.exportarListadoCompletoPatinetesTXT(connection, "electricskate");
-			// Metodos.exportarListadoClientesTXT(connection, "electricskate");
-			// Metodos.registrarPatinete(connection, "electricskate");
-			
-			//Metodos.menuPrincipal(connection, "electricskate");
-			 //Metodos.LogIn(connection, "electricskate");
 
 		} catch (SQLException e) {
 			printSQLException(e);
