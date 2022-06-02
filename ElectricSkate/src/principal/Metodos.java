@@ -341,7 +341,7 @@ public class Metodos {
 		String contraseña = teclado.nextLine();
 	
 		Statement consulta = null;
-		String queryUsario = "select * " + " from " + BDNombre + ".administrador" + " WHERE nombreUsuario = '"
+		String queryUsario = "select nombre, apellidos " + " from " + BDNombre + ".administrador" + " WHERE nombreUsuario = '"
 				+ nombreUsuario + "'" + " AND contraseña = '" + contraseña + "'";
 		
 		try {
@@ -352,8 +352,12 @@ public class Metodos {
 			System.out.println("");
 
 			if (registro.next()) {
+						
+				ResultSet rs = consulta.executeQuery(queryUsario);
+				rs.next();
+				String nombre = rs.getString("nombre");
 				
-				System.out.println("Bienvenido " +nombreUsuario);
+				System.out.println("Bienvenido " +nombre+"!");
 				Thread.sleep(3000);
 				menuPrincipal(connection, BDNombre);
 			} else {
