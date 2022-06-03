@@ -6,7 +6,9 @@ import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import metodos.buscar.Buscar;
 import metodos.excepciones.Excepciones;
+import metodos.menus.Menus;
 
 public class Registrar {
 	
@@ -45,7 +47,21 @@ public class Registrar {
 			
 			System.out.print("introduzca el email: ");
 			String email = teclado.nextLine();
-			System.out.println("");		
+			System.out.println("");
+			
+			Scanner tecla = new Scanner(System.in);
+			System.out.println("¿Desea añadir otro Usuario?: [S/N]");
+			System.out.print("--> ");
+			String sn = "";
+			sn = tecla.nextLine();
+			sn = sn.toLowerCase();
+			if (sn.equals("s")) {
+				nuevoCliente(connection, electricskate);
+			}else {
+				System.out.println("Saliendo...");
+				Thread.sleep(2500);
+				Menus.menuPrincipal(connection, electricskate);
+			}
 			
 			Statement stmt = null;
 
@@ -55,6 +71,8 @@ public class Registrar {
 					+ edad + ",'" + dni + "','" + email + "', 0)");
 
 			System.out.println("Usuario añadido correctamente.");
+			System.out.println(" ");
+			System.out.println("¿Desea añadir otro usuario?");
 
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);
@@ -121,6 +139,20 @@ public class Registrar {
 					+ "'," + edad + ",'" + dni + "','" + email + "','" + nombreUsuario + "','" + contraseña + "')");
 
 			System.out.println("Usuario administrador añadido correctamente.");
+			
+			Scanner tecla = new Scanner(System.in);
+			System.out.println("¿Desea añadir otro Administrador?: [S/N]");
+			System.out.print("--> ");
+			String sn = "";
+			sn = tecla.nextLine();
+			sn = sn.toLowerCase();
+			if (sn.equals("s")) {
+				nuevoAdministradore(connection, electricskate);
+			}else {
+				System.out.println("Saliendo...");
+				Thread.sleep(2500);
+				Menus.menuPrincipal(connection, electricskate);
+			}
 
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);
@@ -179,6 +211,20 @@ public class Registrar {
 					+ "','" + modelo + "'," + 0 + ", " + 1 + ")");
 			
 			System.out.println("Se ha añadido el patinete nº " + numSerie + " correctamente.");
+			System.out.println(" ");
+			Scanner tecla = new Scanner(System.in);
+			System.out.println("¿Desea añadir otro Patinete?: [S/N]");
+			System.out.print("--> ");
+			String sn = "";
+			sn = tecla.nextLine();
+			sn = sn.toLowerCase();
+			if (sn.equals("s")) {
+				nuevopatinete(connection, electricskate);
+			}else {
+				System.out.println("Saliendo...");
+				Thread.sleep(2500);
+				Menus.menuPrincipal(connection, electricskate);
+			}
 
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);

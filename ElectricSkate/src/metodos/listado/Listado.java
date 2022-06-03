@@ -7,13 +7,14 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import metodos.excepciones.Excepciones;
+import metodos.menus.Menus;
 
 public class Listado {
 	
 	static Scanner teclado = new Scanner(System.in);
 	
 	// Metodo para mostrar el listado de los clientes registrados
-	public static void clientes(Connection connection, String BDNombre) throws SQLException {
+	public static void clientes(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		Statement consulta = null;
 		String query = "select nombre, apellidos, edad, dni, email " + " from " + BDNombre + ".cliente";
@@ -56,11 +57,13 @@ public class Listado {
 			Excepciones.printSQLException(e);
 		} finally {
 			consulta.close();
+			Thread.sleep(4000);
+			Menus.volverAlMenuPrincipal(connection, BDNombre);
 		}
 
 	}
 
-	public static void patinetesAlquilados(Connection con, String BDNombre) throws SQLException {
+	public static void patinetesAlquilados(Connection con, String BDNombre) throws SQLException, InterruptedException {
 
 		Statement stmt = null;
 
@@ -100,11 +103,13 @@ public class Listado {
 			Excepciones.printSQLException(e);
 		} finally {
 			stmt.close();
+			Thread.sleep(4000);
+			Menus.volverAlMenuPrincipal(con, BDNombre);
 		}
 
 	}
 
-	public static void patinetesNoAlquilados(Connection con, String BDNombre) throws SQLException {
+	public static void patinetesNoAlquilados(Connection con, String BDNombre) throws SQLException, InterruptedException {
 
 		Statement stmt = null;
 
@@ -144,11 +149,13 @@ public class Listado {
 			Excepciones.printSQLException(e);
 		} finally {
 			stmt.close();
+			Thread.sleep(4000);
+			Menus.volverAlMenuPrincipal(con, BDNombre);
 		}
 
 	}
 
-	public static void completoPatinetes(Connection con, String BDNombre) throws SQLException {
+	public static void completoPatinetes(Connection con, String BDNombre) throws SQLException, InterruptedException {
 
 		Statement stmt = null;
 
@@ -188,14 +195,11 @@ public class Listado {
 			Excepciones.printSQLException(e);
 		} finally {
 			stmt.close();
-		}
+			Thread.sleep(4000);
+			Menus.volverAlMenuPrincipal(con, BDNombre);
 
 	}
 
 	
-	
-	
-	
-	
-	
+	}
 }

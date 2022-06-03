@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import metodos.excepciones.Excepciones;
+import metodos.menus.Menus;
 
 public class Alquiler {
 	
@@ -93,12 +94,29 @@ public class Alquiler {
 										stmt.executeUpdate("update patinete set disponible = 0 where numSerie = " + numSerie);
 										
 										System.out.println("Se ha añadido el alquiler correctamente.");
+										System.out.println(" ");
+										
+										Scanner tecla = new Scanner(System.in);
+										System.out.println("¿Desea realizar otro alquiler?: [S/N]");
+										System.out.print("--> ");
+										String sn = "";
+										sn = tecla.nextLine();
+										sn = sn.toLowerCase();
+										if (sn.equals("s")) {
+											realizarAlquiler(connection, BDNombre);
+										}else {
+											System.out.println("Saliendo...");
+											Thread.sleep(2500);
+											Menus.menuPrincipal(connection, BDNombre);
+										}
 										
 										exit = true;
 										
 									} else {
 
 										System.out.println("Patinete no disponible");
+										Thread.sleep(3000);
+										realizarAlquiler(connection, BDNombre);
 									}
 	
 									exit = true;
@@ -121,6 +139,8 @@ public class Alquiler {
 					} else {
 						
 						System.out.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler");
+						Thread.sleep(3000);
+						realizarAlquiler(connection, BDNombre);
 					}
 					
 					

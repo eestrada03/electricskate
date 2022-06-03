@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import metodos.excepciones.Excepciones;
+import metodos.menus.Menus;
 
 public class Devolucion {
 	
@@ -81,14 +82,28 @@ public class Devolucion {
 							+ (kmRecorridoPatinete + kmRecorridoCliente) + "'" + " WHERE numSerie =" + numSerie);				
 					
 					System.out.println("Se ha devuelto el patinete correctamente.");
+					Scanner tecla = new Scanner(System.in);
+					System.out.println("¿Desea realizar otra devolución?: [S/N]");
+					System.out.print("--> ");
+					String sn = "";
+					sn = tecla.nextLine();
+					sn = sn.toLowerCase();
+					if (sn.equals("s")) {
+						realizarDevolucion(connection, electricskate);
+					}else {
+						System.out.println("Saliendo...");
+						Thread.sleep(2500);
+						Menus.menuPrincipal(connection, electricskate);
+					}
 
 					exit = true;
 						
 					} else {
 						
 						System.out.println("Patinete ya devuelto");
+						System.out.println("Volviendo al menú principal...");
+						Menus.volverAlMenuPrincipal(connection, comprobarAlquiler);
 						
-						exit = true;
 					} 
 
 				} else {

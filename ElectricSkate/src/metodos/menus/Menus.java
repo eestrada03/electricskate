@@ -41,8 +41,6 @@ public class Menus {
 		System.out.println("");
 		System.out.println("8) Logout");
 		System.out.println("");
-		System.out.println("9) Cerrar Programa");
-		System.out.println("");
 		System.out.print("Seleccione una opción: ");
 		int opcion = teclado.nextInt();
 
@@ -86,21 +84,12 @@ public class Menus {
 		case 8:
 			
 			System.out.println("");
-			System.out.println("Cerrando sesión...");
+			System.out.println("Saliendo del programa...");
 			Thread.sleep(3000);
-			
-			teclado.nextLine();
 			LogIn(connection, BDNombre);
 
 			break;
-			
-		case 9:
-			System.out.println("");
-			System.out.println("Cerrando el programa...");
-			System.exit(0);
-			
-			break;
-			
+
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
@@ -309,9 +298,7 @@ public class Menus {
 	}
 
 	public static void LogIn(Connection connection, String BDNombre) throws SQLException, InterruptedException {
-		
-		String nombreUsuario = null;
-		
+
 		System.out.println("");
 		System.out.println("===============================");
 		System.out.println("=========ELECTRICSKATE=========");
@@ -322,7 +309,7 @@ public class Menus {
 		System.out.println("");
 
 		System.out.print("Usuario: ");
-		nombreUsuario = teclado.nextLine();
+		String nombreUsuario = teclado.nextLine();
 
 		System.out.println("");
 		System.out.print("Contraseña: ");
@@ -365,7 +352,11 @@ public class Menus {
 		
 	}
 
-	
+	public static void volverAlMenuPrincipal(Connection connection, String BDNombre) throws InterruptedException, SQLException {
+	System.out.println("Saliendo...");
+	Thread.sleep(2500);
+	Menus.menuPrincipal(connection, BDNombre);
+}
 	
 	
 }

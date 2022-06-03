@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import metodos.excepciones.Excepciones;
+import metodos.menus.Menus;
 
 public class Buscar {
 	
@@ -56,11 +57,25 @@ public class Buscar {
 
 				System.out.println("");
 				System.out.println("*************************************************");
-
+				
+				Scanner tecla = new Scanner(System.in);
+				System.out.println("¿Desea buscar otro DNI?: [S/N]");
+				System.out.print("--> ");
+				String sn = "";
+				sn = tecla.nextLine();
+				sn = sn.toLowerCase();
+				if (sn.equals("s")) {
+					Buscar.cliente(connection, BDNombre);
+				}else {
+					System.out.println("Saliendo...");
+					Thread.sleep(2500);
+					Menus.menuPrincipal(connection, BDNombre);
+				}
+				
 			} else {
 				System.out.println("");
-				System.out.println("dni incorrecto");
-				Thread.sleep(3000);
+				System.out.println("DNI incorrecto.");
+				Thread.sleep(2500);
 				Buscar.cliente(connection, BDNombre);
 			}
 
