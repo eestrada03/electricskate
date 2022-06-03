@@ -40,7 +40,7 @@ public class Principal {
 			//Devolucion.realizarDevolucion(connection, "electricskate");
 			//Alquiler.realizarAlquiler(connection, "electricskate");
 						
-			//Menus.menuPrincipal(connection, "electricskate");
+			Menus.menuPrincipal(connection, "electricskate");
 			//Menus.LogIn(connection, "electricskate");
 
 

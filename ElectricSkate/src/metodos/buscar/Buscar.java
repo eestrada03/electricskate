@@ -12,7 +12,7 @@ public class Buscar {
 	
 	
 	// metodo para buscar a los clientes registrados mediante su dni
-	public static void cliente(Connection connection, String BDNombre) throws SQLException {
+	public static void cliente(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 		Scanner teclado = new Scanner(System.in);
 
 		System.out.println("");
@@ -60,6 +60,8 @@ public class Buscar {
 			} else {
 				System.out.println("");
 				System.out.println("dni incorrecto");
+				Thread.sleep(3000);
+				Buscar.cliente(connection, BDNombre);
 			}
 
 		} catch (SQLException e) {
