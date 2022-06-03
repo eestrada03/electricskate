@@ -3,6 +3,7 @@ package principal;
 import metodos.alquiler.Alquiler;
 import metodos.buscar.Buscar;
 import metodos.devolucion.Devolucion;
+import metodos.excepciones.Excepciones;
 import metodos.listado.Listado;
 import metodos.menus.Menus;
 import metodos.registrar.Registrar;
@@ -28,7 +29,7 @@ public class Principal {
 			//Buscar.cliente(connection, "electricskate");
 			
 			//Registrar.nuevoAdministradore(connection, "electricskate");
-			Registrar.nuevoCliente(connection, "electricskate");
+			//Registrar.nuevoCliente(connection, "electricskate");
 			//Registrar.nuevopatinete(connection, "electricskate");
 			
 			//Listado.clientes(connection, "electricskate");
@@ -37,32 +38,14 @@ public class Principal {
 			//Listado.patinetesNoAlquilados(connection, "electricskate");
 			
 			//Devolucion.realizarDevolucion(connection, "electricskate");
-			//Alquiler.realizarAlquiler2(connection, "electricskate");
+			//Alquiler.realizarAlquiler(connection, "electricskate");
 						
 			//Menus.menuPrincipal(connection, "electricskate");
 			//Menus.LogIn(connection, "electricskate");
 
 
 		} catch (SQLException e) {
-			printSQLException(e);
-				
+			Excepciones.printSQLException(e);			
 		}
 	}
-
-	private static void printSQLException(SQLException ex) {
-
-		ex.printStackTrace(System.err);
-		System.err.println("SQLState: " + ex.getSQLState()); // getSQLState()
-		System.err.println("Error Code: " + ex.getErrorCode()); // getErrorCode()
-		System.err.println("Message: " + ex.getMessage()); // getMessage()
-
-		Throwable t = ex.getCause(); // getCause() - Leemos la primera causa
-
-		while (t != null) {
-			System.out.println("Cause: " + t); // Imprimimos una causa
-			t = t.getCause(); // Leemos otra causa
-		}
-
-	}
-
 }

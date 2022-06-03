@@ -85,7 +85,7 @@ public class Menus {
 			
 			System.out.println("");
 			System.out.println("Saliendo del programa...");
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			LogIn(connection, BDNombre);
 
 			break;
@@ -93,7 +93,7 @@ public class Menus {
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			menuPrincipal(connection, BDNombre);
 
 			break;
@@ -138,7 +138,7 @@ public class Menus {
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			registrarNuevoUsuario(connection, BDNombre);
 			break;
 		}
@@ -181,7 +181,7 @@ public class Menus {
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			listados(connection, BDNombre);
 			break;
 		}
@@ -232,7 +232,7 @@ public class Menus {
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			listadoPatinetes(connection, BDNombre);
 			break;
 		}
@@ -290,7 +290,7 @@ public class Menus {
 		default:
 
 			System.out.println("\n¡Error!, elija una opción disponible");
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			exportarTXT(connection, BDNombre);
 			break;
 		}

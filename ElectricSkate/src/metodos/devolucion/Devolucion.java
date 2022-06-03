@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import metodos.excepciones.Excepciones;
@@ -13,7 +14,7 @@ public class Devolucion {
 	static Scanner teclado = new Scanner(System.in);
 	
 	// Método para realizar devoluciones de patinetes
-	public static void realizarDevolucion(Connection connection, String BDNombre) throws SQLException {
+	public static void realizarDevolucion(Connection connection, String electricskate) throws SQLException, InterruptedException {
 
 		boolean exit = false;
 
@@ -25,11 +26,11 @@ public class Devolucion {
 			System.out.println("===============================");
 			System.out.println("");
 			System.out.print("introduzca el Id del alquiler con el patinete a devolver: ");
-			System.out.println("");
 			String idAlquiler = teclado.nextLine();
-
+			System.out.println("");
+			
 			Statement stmt = null;
-			String comprobarAlquiler = "SELECT numSerie, dni " + " from " + BDNombre + ".alquiler" + " WHERE idAlquiler = '"
+			String comprobarAlquiler = "SELECT numSerie, dni " + " from " + electricskate + ".alquiler" + " WHERE idAlquiler = '"
 					+ idAlquiler + "'";
 
 			try {
@@ -47,23 +48,20 @@ public class Devolucion {
 					
 					if (kmRecorridoCliente == 0) {
 						
-						
-					System.out.println("");
 					System.out.print("introduzca los kilometros recorridos por el cliente: ");
+					kmRecorridoCliente = teclado.nextDouble();
 					System.out.println("");
 
-					kmRecorridoCliente = teclado.nextDouble();
-					 
 					// Actualizamos la tabla cliente y lo ponemos en alquiler NO activo
 					ResultSet rs4 = stmt.executeQuery("SELECT dni FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
 					rs4.next();
 					String dni = rs4.getString("dni");
 					
-					stmt.executeUpdate("UPDATE " + BDNombre + ".cliente SET alquilerActivo = 0 WHERE dni = '" + dni + "'");
+					stmt.executeUpdate("UPDATE " + electricskate + ".cliente SET alquilerActivo = 0 WHERE dni = '" + dni + "'");
 					
 					 
 					// Actualizamos los km recorridos por el cliente
-					stmt.executeUpdate("UPDATE " + BDNombre + ".alquiler SET kmRecorridoCliente = '"
+					stmt.executeUpdate("UPDATE " + electricskate + ".alquiler SET kmRecorridoCliente = '"
 							+ kmRecorridoCliente + "'" + " WHERE idAlquiler = '" + idAlquiler + "'");
 
 					// Actualizamos la tabla patinete y lo ponemos en disponible
@@ -71,7 +69,7 @@ public class Devolucion {
 					rs.next();
 					int numSerie = rs.getInt("numSerie");
 					
-					stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET disponible = 1 WHERE numSerie =" + numSerie);
+					stmt.executeUpdate("UPDATE " + electricskate + ".patinete SET disponible = 1 WHERE numSerie =" + numSerie);
 					
 				
 					// Actualizamos los km recorridos por el patinete en la tabla patinete
@@ -79,10 +77,9 @@ public class Devolucion {
 					rs2.next();
 					double kmRecorridoPatinete = rs2.getInt("kmRecorridoPatinete");
 
-					stmt.executeUpdate("UPDATE " + BDNombre + ".patinete SET kmRecorridoPatinete = '"
+					stmt.executeUpdate("UPDATE " + electricskate + ".patinete SET kmRecorridoPatinete = '"
 							+ (kmRecorridoPatinete + kmRecorridoCliente) + "'" + " WHERE numSerie =" + numSerie);				
 					
-					System.out.println("");
 					System.out.println("Se ha devuelto el patinete correctamente.");
 
 					exit = true;
@@ -100,6 +97,13 @@ public class Devolucion {
 
 			} catch (SQLException e) {
 				Excepciones.printSQLException(e);
+				
+			/*} catch (InputMismatchException e){
+				System.out.println("\n¡Error!, introduce un número.");
+				Thread.sleep(3000);
+				teclado.nextLine();
+				realizarDevolucion(connection, electricskate);
+			*/	
 			} finally {
 				stmt.close();
 			}
