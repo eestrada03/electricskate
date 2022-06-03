@@ -28,7 +28,7 @@ public class Principal {
 			//Buscar.cliente(connection, "electricskate");
 			
 			//Registrar.nuevoAdministradore(connection, "electricskate");
-			//Registrar.nuevoCliente(connection, "electricskate");
+			Registrar.nuevoCliente(connection, "electricskate");
 			//Registrar.nuevopatinete(connection, "electricskate");
 			
 			//Listado.clientes(connection, "electricskate");

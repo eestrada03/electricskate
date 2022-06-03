@@ -158,7 +158,7 @@ public class Alquiler {
 										
 										//Insertamos el nuevo alquiler en la tabla alquiler
 										stmt.executeUpdate("insert into " + BDNombre + ".alquiler VALUES(NULL,'" + dni + "','" +  numSerie
-												+ "','" + dateAlquiler + "','" + dateDevolucion + "', kmRecorridoCliente = 1)");
+												+ "','" + dateAlquiler + "','" + dateDevolucion + "', 0)");
 										
 										//Actualizamos la tabla cliente y ponemos alquilerActivo = 1
 										stmt.executeUpdate("update cliente set AlquilerActivo = 1 where dni = '" + dni +"'");

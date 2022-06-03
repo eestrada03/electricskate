@@ -34,7 +34,7 @@ public class Registrar {
 		try {
 			stmt = connection.createStatement();
 			stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellidos + "',"
-					+ edad + ",'" + dni + "','" + email + "')");
+					+ edad + ",'" + dni + "','" + email + "', 0)");
 			System.out.println("");
 			System.out.println("Usuario añadido correctamente");
 
