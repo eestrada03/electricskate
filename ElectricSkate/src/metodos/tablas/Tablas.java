@@ -49,7 +49,7 @@ public class Tablas {
 
 		String createString = "create table " + BDNombre + ".cliente " + "(nombre varchar(40) NOT NULL,"
 				+ "apellidos varchar(40) NOT NULL," + "edad integer(40) NOT NULL," + "dni varchar(40) NOT NULL,"
-				+ "email varchar(40) NOT NULL," + "AlquilerActivo bit NOT NULL ," + "PRIMARY KEY (dni))";
+				+ "email varchar(40) NOT NULL," + "alquilerActivo bit NOT NULL ," + "PRIMARY KEY (dni))";
 
 		Statement stmt = null;
 
@@ -98,7 +98,7 @@ public class Tablas {
 
 		String createString = "create table " + BDNombre + ".alquiler " + "(idAlquiler integer NOT NULL AUTO_INCREMENT,"
 				+ "dni varchar(40) NOT NULL," + "numSerie integer NOT NULL," + "fechaAlquiler date NOT NULL,"
-				+ "fechaDevolucion date NOT NULL," + "kmRecorridoCliente float(40)," + "PRIMARY KEY (idAlquiler),"
+				+ "fechaDevolucion date NOT NULL," + "kmRecorridoCliente float(40) NOT NULL," + "PRIMARY KEY (idAlquiler),"
 				+ "FOREIGN KEY (dni) REFERENCES cliente (dni),"
 				+ "FOREIGN KEY (numSerie) REFERENCES patinete (numSerie))";
 

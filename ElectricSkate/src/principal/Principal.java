@@ -20,7 +20,7 @@ public class Principal {
 
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/electricskate", "root", "");
 
-			System.out.println("¡Conexión establecida correctamente!");
+			System.out.println("¡Conexión establecida correctamente!\n");
 
 			// creamos la base de datos
 			//Tablas.createBaseDeDatos(connection, "electricskate");
@@ -36,7 +36,7 @@ public class Principal {
 			//Listado.patinetesAlquilados(connection, "electricskate");
 			//Listado.patinetesNoAlquilados(connection, "electricskate");
 			
-			//Devolucion.realizarDevolucion(connection, "electricskate");
+			Devolucion.realizarDevolucion(connection, "electricskate");
 			//Alquiler.realizarAlquiler(connection, "electricskate");
 						
 			//Menus.menuPrincipal(connection, "electricskate");

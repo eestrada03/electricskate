@@ -64,7 +64,7 @@ public class Alquiler {
 			}else {
 				
 				stmt.executeUpdate("insert into " + BDnom + ".alquiler VALUES(NULL,'" + dni + "','" +  numSerie
-						+ "','" + dateAlquiler + "','" + dateDevolucion + "',NULL)");
+						+ "','" + dateAlquiler + "','" + dateDevolucion + "', kmRecorridoCliente = 0)");
 				System.out.println("");
 				
 				
@@ -73,8 +73,7 @@ public class Alquiler {
 
 				System.out.println("Se ha añadido el alquiler correctamente.");
 				System.out.println("El patinete con nº " + numSerie + " ya no se encuentra disponible.");
-				
-				
+								
 			}
 
 			}
