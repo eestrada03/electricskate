@@ -41,6 +41,8 @@ public class Menus {
 		System.out.println("");
 		System.out.println("8) Logout");
 		System.out.println("");
+		System.out.println("9) Cerrar programa");
+		System.out.println("");
 		System.out.print("Seleccione una opción: ");
 		int opcion = teclado.nextInt();
 
@@ -84,10 +86,19 @@ public class Menus {
 		case 8:
 			
 			System.out.println("");
-			System.out.println("Saliendo del programa...");
+			System.out.println("Cerrando sesión...");
 			Thread.sleep(3000);
+			teclado.nextLine();
 			LogIn(connection, BDNombre);
 
+			break;
+			
+		case 9:
+			
+			System.out.println("");
+			System.out.println("Cerrando el programa...");
+			System.exit(0);
+			
 			break;
 
 		default:
