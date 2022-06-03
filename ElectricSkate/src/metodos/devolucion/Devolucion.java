@@ -52,7 +52,7 @@ public class Devolucion {
 					System.out.print("introduzca los kilometros recorridos por el cliente: ");
 					System.out.println("");
 
-					 kmRecorridoCliente = teclado.nextDouble();
+					kmRecorridoCliente = teclado.nextDouble();
 					 
 					// Actualizamos la tabla cliente y lo ponemos en alquiler NO activo
 					ResultSet rs4 = stmt.executeQuery("SELECT dni FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");

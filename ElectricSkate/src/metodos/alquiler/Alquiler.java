@@ -12,7 +12,7 @@ public class Alquiler {
 	
 	static Scanner teclado = new Scanner(System.in);
 	
-	public static void realizarAlquiler(Connection connection, String BDnom) throws SQLException {
+	public static void realizarAlquiler(Connection connection, String BDNombre) throws SQLException {
 
 		System.out.println("");
 		System.out.println("===============================");
@@ -63,7 +63,7 @@ public class Alquiler {
 				
 			}else {
 				
-				stmt.executeUpdate("insert into " + BDnom + ".alquiler VALUES(NULL,'" + dni + "','" +  numSerie
+				stmt.executeUpdate("insert into " + BDNombre + ".alquiler VALUES(NULL,'" + dni + "','" +  numSerie
 						+ "','" + dateAlquiler + "','" + dateDevolucion + "', kmRecorridoCliente = 0)");
 				System.out.println("");
 				
@@ -86,6 +86,135 @@ public class Alquiler {
 	
 	}
 	
+	public static void realizarAlquiler2(Connection connection, String BDNombre) throws SQLException {
+		
+		boolean exit = false;
+		
+		do {
+			
+			System.out.println("");
+			System.out.println("===============================");
+			System.out.println("======REALIZAR ALQUILER========");
+			System.out.println("===============================");
+			System.out.println("");
+			
+			System.out.println("Introduzca los valores correspondientes:");
+			System.out.println("");
+			
+			System.out.print("DNI: ");
+			String dni = teclado.nextLine();
+			
+			Statement stmt = null;
+			String comprobarDni = "SELECT nombre, apellidos " + " from " + BDNombre + ".cliente" + " WHERE dni = '" + dni + "'";
+
+			try {
+				
+				stmt = connection.createStatement();
+				ResultSet rs1 = stmt.executeQuery(comprobarDni);
+				
+				if (rs1.next()) {
+					
+					ResultSet rs2 = stmt.executeQuery("SELECT alquilerActivo FROM cliente WHERE dni = '" + dni + "'");
+					rs2.next();
+					int alquilerActivo = rs2.getInt("alquilerActivo");
+					
+					if (alquilerActivo == 0) {
+						
+						do {
+							
+							System.out.println(" ");
+							
+							System.out.print("Nº de serie: ");
+							String numSerie = teclado.nextLine();
+							System.out.println(" ");
+							
+							String comprobarNumSerie = "SELECT marca, modelo " + " from " + BDNombre + ".patinete" + 
+													   " WHERE numSerie =  '" + numSerie + "'";
+							
+							try {
+								
+								ResultSet rs3 = stmt.executeQuery(comprobarNumSerie);
+								
+								
+								if (rs3.next()) {
+									
+									ResultSet rs4 = stmt.executeQuery("SELECT disponible FROM patinete WHERE numSerie = '" + numSerie + "'");
+									rs4.next();
+									int disponible = rs4.getInt("disponible");
+									
+									if (disponible == 1) {
+										
+										System.out.print("[0000-00-00] ");
+										System.out.print("Fecha Alquiler: ");
+										
+										String dateAlquiler = teclado.nextLine();
+										System.out.println(" ");
+										
+										
+										System.out.print("[0000-00-00] ");
+										System.out.print("Fecha Devolución: ");
+										String dateDevolucion = teclado.nextLine();
+										System.out.println(" ");
+										
+										//Insertamos el nuevo alquiler en la tabla alquiler
+										stmt.executeUpdate("insert into " + BDNombre + ".alquiler VALUES(NULL,'" + dni + "','" +  numSerie
+												+ "','" + dateAlquiler + "','" + dateDevolucion + "', kmRecorridoCliente = 1)");
+										
+										//Actualizamos la tabla cliente y ponemos alquilerActivo = 1
+										stmt.executeUpdate("update cliente set AlquilerActivo = 1 where dni = '" + dni +"'");
+										
+										//Actualizamos la tabla patinete y ponemos disponible = 0
+										stmt.executeUpdate("update patinete set disponible = 0 where numSerie = " + numSerie);
+										
+										System.out.println("Se ha añadido el alquiler correctamente.");
+										
+										exit = true;
+										
+									} else {
+
+										System.out.println("Patinete no disponible");
+									}
 	
+									exit = true;
+								} else {
+									
+									System.out.println("Número de serie incorrecto");
+									
+								}
+											
+							} catch (SQLException e) {
+								
+								Excepciones.printSQLException(e);	
+							}
+							
+							
+							
+						} while (!exit);
+									
+					} else {
+						
+						System.out.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler");
+					}
+					
+					
+							
+					exit = true;
+				} else {
+					
+					System.out.println("DNI incorrecto");
+				}
+							
+				
+			} catch (SQLException e) {
+				Excepciones.printSQLException(e);
+			} finally {
+				stmt.close();
+			}
+			
+			
+		} while (!exit);
+				
+		
+	}
 	
 }

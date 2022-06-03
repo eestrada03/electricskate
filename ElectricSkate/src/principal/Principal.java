@@ -36,8 +36,8 @@ public class Principal {
 			//Listado.patinetesAlquilados(connection, "electricskate");
 			//Listado.patinetesNoAlquilados(connection, "electricskate");
 			
-			Devolucion.realizarDevolucion(connection, "electricskate");
-			//Alquiler.realizarAlquiler(connection, "electricskate");
+			//Devolucion.realizarDevolucion(connection, "electricskate");
+			//Alquiler.realizarAlquiler2(connection, "electricskate");
 						
 			//Menus.menuPrincipal(connection, "electricskate");
 			//Menus.LogIn(connection, "electricskate");
