@@ -15,6 +15,7 @@ public class Alquiler {
 		
 	public static void realizarAlquiler(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 		
+		// Variable boolean para el bucle "do while"
 		boolean exit = false;
 		
 		do {
@@ -27,24 +28,32 @@ public class Alquiler {
 			
 			System.out.println("Introduzca los valores correspondientes:");
 			System.out.println("");
-			
+			//Pedimos información por consola
 			System.out.print("DNI: ");
 			String dni = teclado.nextLine();
 			
+			//Abrimos el Statement
 			Statement stmt = null;
+			
+			//Realizamos una consulta y la guardamos en un String
 			String comprobarDni = "SELECT nombre, apellidos " + " from " + BDNombre + ".cliente" + " WHERE dni = '" + dni + "'";
 
 			try {
-				
+				//Creamos un Statement
 				stmt = connection.createStatement();
+				//Ejecutamos la consulta y la guardamos en un objeto ResultSet
 				ResultSet rs1 = stmt.executeQuery(comprobarDni);
 				
+				// Con este if comprobamos si la información que ha introducido el usuario por consola existe en la base de datos
 				if (rs1.next()) {
+					//Si existe nos dejará continuar, si no, nos la volverá a solicitar
 					
+					//Recuperamos el alquilerActivo con el dni que haya introducido el usuario
 					ResultSet rs2 = stmt.executeQuery("SELECT alquilerActivo FROM cliente WHERE dni = '" + dni + "'");
 					rs2.next();
 					int alquilerActivo = rs2.getInt("alquilerActivo");
 					
+					//Si el alquilerActivo es igual a 0 quiere decir que el cliente no tiene ningún alquiler activo y nos permite continuar
 					if (alquilerActivo == 0) {
 						
 						do {
@@ -52,25 +61,29 @@ public class Alquiler {
 							System.out.println(" ");
 							
 							System.out.print("Nº de serie: ");
+							//Pedimos información por consola
 							String numSerie = teclado.nextLine();
 							System.out.println(" ");
-							
+							//Realizamos una consulta y la guardamos en un String
 							String comprobarNumSerie = "SELECT marca, modelo " + " from " + BDNombre + ".patinete" + 
 													   " WHERE numSerie =  '" + numSerie + "'";
 							
 							try {
-								
+								//En este caso comprobará si el numSerie introducido por consola existe en la base de datos
 								ResultSet rs3 = stmt.executeQuery(comprobarNumSerie);
 								
-								
+								//Si existe nos dejará continuar, si no, nos lo volverá a solicitar
 								if (rs3.next()) {
 									
+									//Realizamos otra consulta para comprobar si el patinete este disponible
 									ResultSet rs4 = stmt.executeQuery("SELECT disponible FROM patinete WHERE numSerie = '" + numSerie + "'");
 									rs4.next();
 									int disponible = rs4.getInt("disponible");
 									
+									//Si disponible = 1, implica que está disponible y nos dejará continuar
 									if (disponible == 1) {
 										
+										//Pedimos por consola la información restante para realizar el alquiler
 										System.out.print("[0000-00-00] ");
 										System.out.print("Fecha Alquiler: ");
 										
@@ -96,15 +109,16 @@ public class Alquiler {
 										System.out.println("Se ha añadido el alquiler correctamente.");
 										System.out.println(" ");
 										
-										Scanner tecla = new Scanner(System.in);
+										//Si el alquiler se realiza con exito, tenemos la opción de realizar otro alquiler
 										System.out.println("¿Desea realizar otro alquiler?: [S/N]");
 										System.out.print("--> ");
 										String sn = "";
-										sn = tecla.nextLine();
+										sn = teclado.nextLine();
 										sn = sn.toLowerCase();
 										if (sn.equals("s")) {
 											realizarAlquiler(connection, BDNombre);
 										}else {
+											//O volver al menú principal
 											System.out.println("Saliendo...");
 											Thread.sleep(2500);
 											Menus.menuPrincipal(connection, BDNombre);
@@ -113,7 +127,7 @@ public class Alquiler {
 										exit = true;
 										
 									} else {
-
+										//Si el patinete no está disponible, termina el bucle y nos dirije al menu principal
 										System.out.println("Patinete no disponible");
 										Thread.sleep(3000);
 										realizarAlquiler(connection, BDNombre);
@@ -121,7 +135,7 @@ public class Alquiler {
 	
 									exit = true;
 								} else {
-									
+									//Si el NumSerie es incorrecto nos aparece este mensaje 
 									System.out.println("Número de serie incorrecto");
 									Thread.sleep(3000);
 									

@@ -364,7 +364,7 @@ public class Menus {
 	}
 
 	public static void volverAlMenuPrincipal(Connection connection, String BDNombre) throws InterruptedException, SQLException {
-	System.out.println("Saliendo...");
+	System.out.println("\nVolviendo al menú principal...");
 	Thread.sleep(2500);
 	Menus.menuPrincipal(connection, BDNombre);
 }

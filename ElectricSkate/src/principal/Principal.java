@@ -4,6 +4,7 @@ import metodos.alquiler.Alquiler;
 import metodos.buscar.Buscar;
 import metodos.devolucion.Devolucion;
 import metodos.excepciones.Excepciones;
+import metodos.exportarTxt.ExportarTxt;
 import metodos.listado.Listado;
 import metodos.menus.Menus;
 import metodos.registrar.Registrar;
@@ -42,7 +43,7 @@ public class Principal {
 						
 			Menus.menuPrincipal(connection, "electricskate");
 			//Menus.LogIn(connection, "electricskate");
-
+			//ExportarTxt.listadoPatineteNoAlquilado(connection, "electricskate");
 
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);			

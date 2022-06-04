@@ -67,9 +67,8 @@ public class Buscar {
 				if (sn.equals("s")) {
 					Buscar.cliente(connection, BDNombre);
 				}else {
-					System.out.println("Saliendo...");
-					Thread.sleep(2500);
-					Menus.menuPrincipal(connection, BDNombre);
+					
+					Menus.volverAlMenuPrincipal(connection, BDNombre);
 				}
 				
 			} else {

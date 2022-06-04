@@ -12,13 +12,15 @@ import metodos.menus.Menus;
 
 public class Devolucion {
 	
+	//Creamos un nuevo objeto de tipo Scanner para pedir datos por consola
 	static Scanner teclado = new Scanner(System.in);
 	
 	// Método para realizar devoluciones de patinetes
 	public static void realizarDevolucion(Connection connection, String electricskate) throws SQLException, InterruptedException {
-
+		
+		// Variable boolean para el bucle "do while"
 		boolean exit = false;
-
+		
 		do {
 			
 			System.out.println("");
@@ -27,26 +29,35 @@ public class Devolucion {
 			System.out.println("===============================");
 			System.out.println("");
 			System.out.print("introduzca el Id del alquiler con el patinete a devolver: ");
+			//Pedimos información por consola
 			String idAlquiler = teclado.nextLine();
 			System.out.println("");
 			
+			//Abrimos el Statement
 			Statement stmt = null;
+			
+			//Realizamos una consulta y la guardamos en un String
 			String comprobarAlquiler = "SELECT numSerie, dni " + " from " + electricskate + ".alquiler" + " WHERE idAlquiler = '"
 					+ idAlquiler + "'";
 
 			try {
-
+				//Creamos un Statement
 				stmt = connection.createStatement();
+				//Ejecutamos la consulta y la guardamos en un objeto ResultSet
 				ResultSet registro = stmt.executeQuery(comprobarAlquiler);
-
-				if (registro.next()) {
-					
+				
+				// Con este if comprobamos si la información que ha introducido el usuario por consola existe en la base de datos
+				if (registro.next()) { 
+					//Si existe nos dejará continuar, si no nos la volverá a solicitar
 					double kmRecorridoCliente;
 					
+					// Recuperamos el kmRecorridoCliente con el idAlquiler que haya introducido el usuario
 					ResultSet rs3 = stmt.executeQuery("SELECT kmRecorridoCliente FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
 					rs3.next();
+					
 					kmRecorridoCliente = rs3.getDouble("kmRecorridoCliente");
 					
+					//Si el kmRecorridoCliente es igual a 0 quiere decir que el alquiler sigue activo y nos permite continuar
 					if (kmRecorridoCliente == 0) {
 						
 					System.out.print("introduzca los kilometros recorridos por el cliente: ");
@@ -81,7 +92,10 @@ public class Devolucion {
 					stmt.executeUpdate("UPDATE " + electricskate + ".patinete SET kmRecorridoPatinete = '"
 							+ (kmRecorridoPatinete + kmRecorridoCliente) + "'" + " WHERE numSerie =" + numSerie);				
 					
+					
 					System.out.println("Se ha devuelto el patinete correctamente.");
+					
+					//Una vez devuelto el patinete el cliente tiene la opción de realizar otra devolución
 					Scanner tecla = new Scanner(System.in);
 					System.out.println("¿Desea realizar otra devolución?: [S/N]");
 					System.out.print("--> ");
@@ -91,6 +105,7 @@ public class Devolucion {
 					if (sn.equals("s")) {
 						realizarDevolucion(connection, electricskate);
 					}else {
+						//o puede volver al menú principal
 						System.out.println("Saliendo...");
 						Thread.sleep(2500);
 						Menus.menuPrincipal(connection, electricskate);
@@ -99,7 +114,7 @@ public class Devolucion {
 					exit = true;
 						
 					} else {
-						
+						//Si el patinete ya ha sido devuelto, nos devuelve al menú principal
 						System.out.println("Patinete ya devuelto");
 						System.out.println("Volviendo al menú principal...");
 						Menus.volverAlMenuPrincipal(connection, comprobarAlquiler);
@@ -107,9 +122,11 @@ public class Devolucion {
 					} 
 
 				} else {
+					//Si el Id introducido es incorrecto aparecerá este mensaje y volverá a pedirnos que ingresemos un Id
 					System.out.println("Id del alquiler incorrecto.");
 				}
-
+				
+			// Control de excepciones	
 			} catch (SQLException e) {
 				Excepciones.printSQLException(e);
 				
@@ -120,9 +137,10 @@ public class Devolucion {
 				realizarDevolucion(connection, electricskate);
 			*/	
 			} finally {
+				// Cerramos el Statement
 				stmt.close();
 			}
-
+			//Si se cumple la restricción, "exit=true", el bucle termina
 		} while (!exit);
 	}
 
