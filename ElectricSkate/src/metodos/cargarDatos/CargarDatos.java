@@ -71,7 +71,7 @@ public class CargarDatos {
 
 			stmt = connection.createStatement();
 
-			// CAMPOS EQUIPO: TEAM_ID, EQ_NOMBRE, ESTADIO, POBLACION, PROVINCIA, COD_POSTAL
+			// CAMPOS CLIENTE: NOMBRE, APELLIDOS, EDAD, DNI, EMAIL.
 			stmt.executeUpdate("INSERT INTO " + BDNombre + ".cliente VALUES ("
 					+ "'Jose','Maria',35, 'X45678990', 'josemaria@docente.edib.es', 0)");
 			stmt.executeUpdate("INSERT INTO " + BDNombre + ".cliente VALUES ("

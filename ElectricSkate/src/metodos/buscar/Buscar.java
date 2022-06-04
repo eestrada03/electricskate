@@ -14,6 +14,7 @@ public class Buscar {
 	
 	// metodo para buscar a los clientes registrados mediante su dni
 	public static void cliente(Connection connection, String BDNombre) throws SQLException, InterruptedException {
+		//Creamos un nuevo objeto de tipo Scanner para pedir datos por consola
 		Scanner teclado = new Scanner(System.in);
 
 		System.out.println("");
@@ -24,25 +25,32 @@ public class Buscar {
 
 		System.out.print("introduzca el DNI del cliente a buscar: ");
 		System.out.println("");
+		//almacenamos lo que escribamos por consola en una variable
 		String dni = teclado.nextLine();
-
+		
+		//Abrimos el Statement
 		Statement consulta = null;
+		//creamos la sentencia select para los datos del cliente, buscandolo por su dni
 		String query = "select nombre, apellidos, edad, email " + " from " + BDNombre + ".cliente" + " WHERE dni = '"
 				+ dni + "'";
 
 		try {
-
+			
+			//guardamos dentro del objeto consulta de la clase Statement la conexión a la base de datos
 			consulta = connection.createStatement();
+			//guardamos todos los registros de la tabla que vamos a consultar
 			ResultSet registro = consulta.executeQuery(query);
 
 			System.out.println("");
 			System.out.println("**** DATOS DEL CLIENTE CON EL DNI: " + dni + " ****");
-
+			
+			//comprobamos si existen los valores de dicha tabla
 			if (registro.next()) {
 
 				System.out.println("");
 				System.out.println("*************************************************");
-
+				
+				//almacenamos los valores obtenidos dendro de una variable
 				String cliente = registro.getString("nombre");
 				System.out.println("Nombre: " + cliente);
 
@@ -58,6 +66,7 @@ public class Buscar {
 				System.out.println("");
 				System.out.println("*************************************************");
 				
+				//si deseamos buscar otro dni
 				Scanner tecla = new Scanner(System.in);
 				System.out.println("¿Desea buscar otro DNI?: [S/N]");
 				System.out.print("--> ");
@@ -77,10 +86,12 @@ public class Buscar {
 				Thread.sleep(2500);
 				Buscar.cliente(connection, BDNombre);
 			}
-
+			
+		// Control de excepciones
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);
 		} finally {
+			// Cerramos el Statement
 			consulta.close();
 		}
 
