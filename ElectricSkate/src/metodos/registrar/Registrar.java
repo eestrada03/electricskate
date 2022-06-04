@@ -48,12 +48,21 @@ public class Registrar {
 			System.out.print("introduzca el email: ");
 			String email = teclado.nextLine();
 			System.out.println("");
+					
+			Statement stmt = null;
+
 			
-			Scanner tecla = new Scanner(System.in);
+			stmt = connection.createStatement();
+			stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellidos + "',"
+					+ edad + ",'" + dni + "','" + email + "', 0)");
+
+			System.out.println("Usuario añadido correctamente.");
+			System.out.println(" ");
+			
 			System.out.println("¿Desea añadir otro Usuario?: [S/N]");
 			System.out.print("--> ");
 			String sn = "";
-			sn = tecla.nextLine();
+			sn = teclado.nextLine();
 			sn = sn.toLowerCase();
 			if (sn.equals("s")) {
 				nuevoCliente(connection, electricskate);
@@ -63,16 +72,6 @@ public class Registrar {
 				Menus.menuPrincipal(connection, electricskate);
 			}
 			
-			Statement stmt = null;
-
-		
-			stmt = connection.createStatement();
-			stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellidos + "',"
-					+ edad + ",'" + dni + "','" + email + "', 0)");
-
-			System.out.println("Usuario añadido correctamente.");
-			System.out.println(" ");
-			System.out.println("¿Desea añadir otro usuario?");
 
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);
@@ -140,11 +139,10 @@ public class Registrar {
 
 			System.out.println("Usuario administrador añadido correctamente.");
 			
-			Scanner tecla = new Scanner(System.in);
 			System.out.println("¿Desea añadir otro Administrador?: [S/N]");
 			System.out.print("--> ");
 			String sn = "";
-			sn = tecla.nextLine();
+			sn = teclado.nextLine();
 			sn = sn.toLowerCase();
 			if (sn.equals("s")) {
 				nuevoAdministradore(connection, electricskate);
@@ -212,11 +210,11 @@ public class Registrar {
 			
 			System.out.println("Se ha añadido el patinete nº " + numSerie + " correctamente.");
 			System.out.println(" ");
-			Scanner tecla = new Scanner(System.in);
+
 			System.out.println("¿Desea añadir otro Patinete?: [S/N]");
 			System.out.print("--> ");
 			String sn = "";
-			sn = tecla.nextLine();
+			sn = teclado.nextLine();
 			sn = sn.toLowerCase();
 			if (sn.equals("s")) {
 				nuevopatinete(connection, electricskate);
