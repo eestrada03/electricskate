@@ -12,7 +12,7 @@ import metodos.menus.Menus;
 public class Buscar {
 	
 	
-	// metodo para buscar a los clientes registrados mediante su dni
+	// Método para buscar a los clientes registrados mediante su dni
 	public static void cliente(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 		//Creamos un nuevo objeto de tipo Scanner para pedir datos por consola
 		Scanner teclado = new Scanner(System.in);
@@ -25,18 +25,18 @@ public class Buscar {
 
 		System.out.print("introduzca el DNI del cliente a buscar: ");
 		System.out.println("");
-		//almacenamos lo que escribamos por consola en una variable
+		//Almacenamos lo que escribamos por consola en una variable
 		String dni = teclado.nextLine();
 		
 		//Abrimos el Statement
 		Statement consulta = null;
-		//creamos la sentencia select para los datos del cliente, buscandolo por su dni
+		//Creamos la sentencia select para los datos del cliente, buscandolo por su dni
 		String query = "select nombre, apellidos, edad, email " + " from " + BDNombre + ".cliente" + " WHERE dni = '"
 				+ dni + "'";
 
 		try {
 			
-			//guardamos dentro del objeto consulta de la clase Statement la conexión a la base de datos
+			//Guardamos dentro del objeto consulta de la clase Statement la conexión a la base de datos
 			consulta = connection.createStatement();
 			//guardamos todos los registros de la tabla que vamos a consultar
 			ResultSet registro = consulta.executeQuery(query);

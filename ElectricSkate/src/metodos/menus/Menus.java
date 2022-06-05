@@ -16,6 +16,7 @@ import metodos.registrar.Registrar;
 
 public class Menus {
 	
+	//Objeto scanner para recoger los datos introducidos por consola.
 	static Scanner teclado = new Scanner(System.in);
 	
 	public static void menuPrincipal(Connection connection, String BDNombre) throws SQLException, InterruptedException {
@@ -44,8 +45,12 @@ public class Menus {
 		System.out.println("9) Cerrar programa");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
+		
+		//Variable int que recoge la opción seleccionada por consola.
 		int opcion = teclado.nextInt();
-
+		
+		
+		//Switch para navegar por el menú
 		switch (opcion) {
 
 		case 1:
@@ -112,6 +117,7 @@ public class Menus {
 
 	}
 	
+	//Método para seleccionar el tipo de usuario a registrar
 	public static void registrarNuevoUsuario(Connection connection, String BDNombre)
 			throws SQLException, InterruptedException {
 
@@ -156,6 +162,7 @@ public class Menus {
 
 	}
 
+	//Método para seleccionar el tipo de lista que se desea 
 	public static void listados(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -198,7 +205,8 @@ public class Menus {
 		}
 
 	}
-
+	
+	//Método donde selecciona el tipo de listado de patinetes
 	public static void listadoPatinetes(Connection connection, String BDNombre)
 			throws SQLException, InterruptedException {
 
@@ -250,6 +258,7 @@ public class Menus {
 
 	}
 	
+	//Método donde se selecciona es el tipo de lista a exportar a txt
 	public static void exportarTXT(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -307,7 +316,8 @@ public class Menus {
 		}
 
 	}
-
+	
+	//Método para iniciar sesión
 	public static void LogIn(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -318,25 +328,29 @@ public class Menus {
 		System.out.println("             LOGIN");
 		System.out.println("");
 		System.out.println("");
-
+		
 		System.out.print("Usuario: ");
 		String nombreUsuario = teclado.nextLine();
 
 		System.out.println("");
 		System.out.print("Contraseña: ");
 		String contraseña = teclado.nextLine();
-	
+		
+		//Creamos objeto statement vacio 
 		Statement consulta = null;
 		String queryUsario = "select nombre, apellidos " + " from " + BDNombre + ".administrador" + " WHERE nombreUsuario = '"
 				+ nombreUsuario + "'" + " AND contraseña = '" + contraseña + "'";
 		
 		try {
-
+			
+			//Creamos un statement
 			consulta = connection.createStatement();
+			//Creamos un ResultSet 
 			ResultSet registro = consulta.executeQuery(queryUsario);
 
 			System.out.println("");
-
+			
+			//En caso de que exista el usuario introducido
 			if (registro.next()) {
 						
 				ResultSet rs = consulta.executeQuery(queryUsario);
@@ -346,6 +360,8 @@ public class Menus {
 				System.out.println("Bienvenido " +nombre+"!");
 				Thread.sleep(3000);
 				menuPrincipal(connection, BDNombre);
+				
+			//En caso de que no exista el usuario introducido
 			} else {
 				
 				System.out.println("¡Error!, usuario o contraseña incorrecto");
@@ -362,7 +378,8 @@ public class Menus {
 			
 		
 	}
-
+	
+	//Método que te dirige al menú principal
 	public static void volverAlMenuPrincipal(Connection connection, String BDNombre) throws InterruptedException, SQLException {
 	System.out.println("\nVolviendo al menú principal...");
 	Thread.sleep(2500);

@@ -14,6 +14,7 @@ public class Registrar {
 	
 	static Scanner teclado = new Scanner(System.in);
 	
+	//Método para registrar un nuevo cliente
 	public static void nuevoCliente(Connection connection, String electricskate) throws SQLException, InterruptedException {
 		
 		
@@ -27,6 +28,7 @@ public class Registrar {
 			System.out.println("Introduzca los valores correspondientes");
 			System.out.println("");
 			
+			//Recogemos datos mediante Scanner.
 			System.out.print("Nombre: ");
 			String nombre = teclado.nextLine();
 			System.out.println("");
@@ -51,8 +53,9 @@ public class Registrar {
 					
 			Statement stmt = null;
 
-			
+			//Creamos el Statement
 			stmt = connection.createStatement();
+			//Ejecutamos ek Statement para insertar el usuario utilizando los parámetros recogidos anteriormente.
 			stmt.executeUpdate("insert into " + electricskate + ".cliente VALUES('" + nombre + "','" + apellidos + "',"
 					+ edad + ",'" + dni + "','" + email + "', 0)");
 
@@ -64,6 +67,7 @@ public class Registrar {
 			String sn = "";
 			sn = teclado.nextLine();
 			sn = sn.toLowerCase();
+			
 			if (sn.equals("s")) {
 				nuevoCliente(connection, electricskate);
 			}else {
@@ -88,6 +92,8 @@ public class Registrar {
 		}
 	}
 
+	//Método para registrar nuevos administradores.
+	
 	public static void nuevoAdministradore(Connection connection, String electricskate) throws SQLException, InterruptedException {
 
 		try {
@@ -100,7 +106,7 @@ public class Registrar {
 			
 			System.out.println("Introduzca los valores correspondientes");
 			System.out.println("");
-			
+			//Recogemos datos mediante Scanner.
 			System.out.print("Nombre: ");
 			String nombre = teclado.nextLine();
 			System.out.println("");
@@ -133,7 +139,7 @@ public class Registrar {
 			Statement stmt1 = null;
 			
 			stmt1 = connection.createStatement();
-
+			//Ejecutamos ek Statement para insertar el administrador utilizando los parámetros recogidos anteriormente.
 			stmt1.executeUpdate("insert into " + electricskate + ".administrador VALUES('" + nombre + "','" + apellidos
 					+ "'," + edad + ",'" + dni + "','" + email + "','" + nombreUsuario + "','" + contraseña + "')");
 
