@@ -80,7 +80,7 @@ public class Devolucion {
 					ResultSet rs = stmt.executeQuery("SELECT numSerie FROM alquiler WHERE idAlquiler = '" + idAlquiler + "'");
 					rs.next();
 					int numSerie = rs.getInt("numSerie");
-					
+					teclado.nextLine();
 					stmt.executeUpdate("UPDATE " + electricskate + ".patinete SET disponible = 1 WHERE numSerie =" + numSerie);
 					
 				
@@ -96,11 +96,11 @@ public class Devolucion {
 					System.out.println("Se ha devuelto el patinete correctamente.");
 					
 					//Una vez devuelto el patinete el cliente tiene la opción de realizar otra devolución
-					Scanner tecla = new Scanner(System.in);
+					
 					System.out.println("¿Desea realizar otra devolución?: [S/N]");
 					System.out.print("--> ");
 					String sn = "";
-					sn = tecla.nextLine();
+					sn = teclado.nextLine();
 					sn = sn.toLowerCase();
 					if (sn.equals("s")) {
 						realizarDevolucion(connection, electricskate);
@@ -110,13 +110,13 @@ public class Devolucion {
 						Thread.sleep(2500);
 						Menus.menuPrincipal(connection, electricskate);
 					}
-
+					
 					exit = true;
 						
 					} else {
 						//Si el patinete ya ha sido devuelto, nos devuelve al menú principal
-						System.out.println("Patinete ya devuelto");
-						System.out.println("Volviendo al menú principal...");
+						System.out.println("Patinete ya devuelto.");
+						
 						Menus.volverAlMenuPrincipal(connection, comprobarAlquiler);
 						
 					} 
@@ -124,6 +124,20 @@ public class Devolucion {
 				} else {
 					//Si el Id introducido es incorrecto aparecerá este mensaje y volverá a pedirnos que ingresemos un Id
 					System.out.println("Id del alquiler incorrecto.");
+					
+					System.out.println("¿Desea introducir otro id?: [S/N]");
+					System.out.print("--> ");
+					String sn = "";
+					sn = teclado.nextLine();
+					sn = sn.toLowerCase();
+					if (sn.equals("s")) {
+						realizarDevolucion(connection, electricskate);
+					}else {
+						//o puede volver al menú principal
+						System.out.println("Saliendo...");
+						Thread.sleep(2500);
+						Menus.menuPrincipal(connection, electricskate);
+					}
 				}
 				
 			// Control de excepciones	

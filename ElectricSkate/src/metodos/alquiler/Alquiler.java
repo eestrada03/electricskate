@@ -129,8 +129,19 @@ public class Alquiler {
 									} else {
 										//Si el patinete no está disponible, termina el bucle y nos dirije al menu principal
 										System.out.println("Patinete no disponible");
-										Thread.sleep(3000);
-										realizarAlquiler(connection, BDNombre);
+										System.out.println("¿Desea realizar otro alquiler?: [S/N]");
+										System.out.print("--> ");
+										String sn = "";
+										sn = teclado.nextLine();
+										sn = sn.toLowerCase();
+										if (sn.equals("s")) {
+											realizarAlquiler(connection, BDNombre);
+										}else {
+											//O volver al menú principal
+											System.out.println("Saliendo...");
+											Thread.sleep(2500);
+											Menus.menuPrincipal(connection, BDNombre);
+										}
 									}
 	
 									exit = true;
@@ -151,10 +162,22 @@ public class Alquiler {
 						} while (!exit);
 									
 					} else {
-						
-						System.out.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler");
+						System.out.println("");
+						System.out.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler.");
 						Thread.sleep(3000);
-						realizarAlquiler(connection, BDNombre);
+						System.out.println("¿Desea introducir otro DNI?: [S/N]");
+						System.out.print("--> ");
+						String sn = "";
+						sn = teclado.nextLine();
+						sn = sn.toLowerCase();
+						if (sn.equals("s")) {
+							realizarAlquiler(connection, BDNombre);
+						}else {
+							//O volver al menú principal
+							System.out.println("Saliendo...");
+							Thread.sleep(2500);
+							Menus.menuPrincipal(connection, BDNombre);
+						}
 					}
 					
 					
