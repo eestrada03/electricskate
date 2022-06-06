@@ -14,6 +14,7 @@ public class Buscar {
 	
 	// Método para buscar a los clientes registrados mediante su dni
 	public static void cliente(Connection connection, String BDNombre) throws SQLException, InterruptedException {
+		
 		//Creamos un nuevo objeto de tipo Scanner para pedir datos por consola
 		Scanner teclado = new Scanner(System.in);
 
@@ -24,7 +25,7 @@ public class Buscar {
 		System.out.println("");
 
 		System.out.print("introduzca el DNI del cliente a buscar: ");
-		System.out.println("");
+
 		//Almacenamos lo que escribamos por consola en una variable
 		String dni = teclado.nextLine();
 		
@@ -40,12 +41,12 @@ public class Buscar {
 			consulta = connection.createStatement();
 			//guardamos todos los registros de la tabla que vamos a consultar
 			ResultSet registro = consulta.executeQuery(query);
-
-			System.out.println("");
-			System.out.println("**** DATOS DEL CLIENTE CON EL DNI: " + dni + " ****");
 			
 			//comprobamos si existen los valores de dicha tabla
 			if (registro.next()) {
+				
+				System.out.println("");
+				System.out.println("**** DATOS DEL CLIENTE CON EL DNI: " + dni + " ****");
 
 				System.out.println("");
 				System.out.println("*************************************************");
@@ -67,11 +68,11 @@ public class Buscar {
 				System.out.println("*************************************************");
 				
 				//si deseamos buscar otro dni
-				Scanner tecla = new Scanner(System.in);
+				
 				System.out.println("¿Desea buscar otro DNI?: [S/N]");
 				System.out.print("--> ");
 				String sn = "";
-				sn = tecla.nextLine();
+				sn = teclado.nextLine();
 				sn = sn.toLowerCase();
 				if (sn.equals("s")) {
 					Buscar.cliente(connection, BDNombre);
@@ -84,7 +85,18 @@ public class Buscar {
 				System.out.println("");
 				System.out.println("DNI incorrecto.");
 				Thread.sleep(2500);
-				Buscar.cliente(connection, BDNombre);
+				System.out.println("");
+				System.out.println("¿Desea buscar otro DNI?: [S/N]");
+				System.out.print("--> ");
+				String sn = "";
+				sn = teclado.nextLine();
+				sn = sn.toLowerCase();
+				if (sn.equals("s")) {
+					Buscar.cliente(connection, BDNombre);
+				}else {
+					
+					Menus.volverAlMenuPrincipal(connection, BDNombre);
+				}
 			}
 			
 		// Control de excepciones

@@ -43,6 +43,7 @@ public class Principal {
 						
 			Menus.menuPrincipal(connection, "electricskate");
 			//Menus.LogIn(connection, "electricskate");
+			
 			//ExportarTxt.listadoPatineteNoAlquilado(connection, "electricskate");
 
 		} catch (SQLException e) {

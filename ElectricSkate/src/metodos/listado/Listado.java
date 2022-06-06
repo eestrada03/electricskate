@@ -65,7 +65,7 @@ public class Listado {
 		} finally {
 			// Cerramos el Statement
 			consulta.close();
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			Menus.volverAlMenuPrincipal(connection, BDNombre);
 		}
 
@@ -119,7 +119,7 @@ public class Listado {
 		} finally {
 			// Cerramos el Statement
 			stmt.close();
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			Menus.volverAlMenuPrincipal(con, BDNombre);
 		}
 
@@ -174,7 +174,7 @@ public class Listado {
 		} finally {
 			// Cerramos el Statement
 			stmt.close();
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			Menus.volverAlMenuPrincipal(con, BDNombre);
 		}
 
@@ -229,7 +229,7 @@ public class Listado {
 		} finally {
 			// Cerramos el Statement
 			stmt.close();
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			Menus.volverAlMenuPrincipal(con, BDNombre);
 
 	}

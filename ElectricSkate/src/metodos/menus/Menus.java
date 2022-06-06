@@ -36,9 +36,9 @@ public class Menus {
 		System.out.println("");
 		System.out.println("5) Realizar alquiler");
 		System.out.println("");
-		System.out.println("6) Realizar devolucion");
+		System.out.println("6) Realizar devolución");
 		System.out.println("");
-		System.out.println("7) Exportar ficheros");
+		System.out.println("7) Exportar listados");
 		System.out.println("");
 		System.out.println("8) Logout");
 		System.out.println("");
@@ -48,7 +48,7 @@ public class Menus {
 		
 		//Variable int que recoge la opción seleccionada por consola.
 		int opcion = teclado.nextInt();
-		
+		teclado.nextLine();
 		
 		//Switch para navegar por el menú
 		switch (opcion) {
@@ -93,7 +93,6 @@ public class Menus {
 			System.out.println("");
 			System.out.println("Cerrando sesión...");
 			Thread.sleep(3000);
-			teclado.nextLine();
 			LogIn(connection, BDNombre);
 
 			break;
@@ -263,7 +262,7 @@ public class Menus {
 
 		System.out.println("");
 		System.out.println("===============================");
-		System.out.println("=======Exportar listados=======");
+		System.out.println("=======EXPORTAR LISTADOS=======");
 		System.out.println("===============================");
 		System.out.println("");
 		System.out.println("1) Exportar listado clientes");
@@ -277,7 +276,6 @@ public class Menus {
 		System.out.println("5) Volver al menú principal");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
-		System.out.println("");
 		int opcion = teclado.nextInt();
 
 		switch (opcion) {

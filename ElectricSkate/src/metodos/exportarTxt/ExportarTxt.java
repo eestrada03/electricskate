@@ -81,7 +81,8 @@ public class ExportarTxt {
 				buff.newLine();
 
 			}
-
+			
+			System.out.println("");
 			System.out.println("El fichero se ha escrito y guardado correctamente!");
 			
 			// Cerramos la conexión con el buffer
@@ -168,7 +169,8 @@ public class ExportarTxt {
 				buff.newLine();
 
 			}
-
+			
+			System.out.println("");
 			System.out.println("El fichero se ha escrito y guardado correctamente!");
 			
 			// Cerramos la conexión con el buffer
@@ -254,7 +256,8 @@ public class ExportarTxt {
 				buff.newLine();
 
 			}
-
+			
+			System.out.println("");
 			System.out.println("El fichero se ha escrito y guardado correctamente!");
 			
 			// Cerramos la conexión con el buffer
@@ -336,7 +339,8 @@ public class ExportarTxt {
 				buff.newLine();
 
 			}
-
+			
+			System.out.println("");
 			System.out.println("El fichero se ha escrito y guardado correctamente!");
 
 			// Cerramos la conexión con el buffer
