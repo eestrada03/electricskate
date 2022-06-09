@@ -16,10 +16,10 @@ import metodos.excepciones.Excepciones;
 public class Tablas {
 	
 	/**
-	 * metodo para llamar otros metodos de creacion de las tablas a la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para llamar otros metodos de creación de las tablas a la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 	
 	public static void createBaseDeDatos(Connection connection, String BDNombre) throws SQLException {
@@ -34,10 +34,10 @@ public class Tablas {
 	}
 
 	/**
-	 * metodo para crear la tabla de patinetes en la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para crear la tabla de patinetes en la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 	
 	public static void createPatinete(Connection connection, String BDNombre) throws SQLException {
@@ -64,10 +64,10 @@ public class Tablas {
 	}
 	
 	/**
-	 * metodo para crear la tabla de los clientes en la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para crear la tabla de los clientes en la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 	
 	// metodo para crear la tabla clientes
@@ -95,10 +95,10 @@ public class Tablas {
 	}
 	
 	/**
-	 * metodo para crear la tabla de los administradores en la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para crear la tabla de los administradores en la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 
 	// metodo para crear la tabla administradosres
@@ -127,10 +127,10 @@ public class Tablas {
 	}
 	
 	/**
-	 * metodo para crear la tabla de alquiler en la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para crear la tabla de alquiler en la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 
 	// metodo para crear la tabla Alquiler

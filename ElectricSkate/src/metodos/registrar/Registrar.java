@@ -22,10 +22,10 @@ public class Registrar {
 	static Scanner teclado = new Scanner(System.in);
 	
 	/**
-	 * metodo para poder registrar un nuevo cliente
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para poder registrar un nuevo cliente
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -136,10 +136,10 @@ public class Registrar {
 	}
 	
 	/**
-	 * metodo para registrar un nuevo administrador
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para registrar un nuevo administrador
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -255,10 +255,10 @@ public class Registrar {
 	}
 	
 	/**
-	 * metodo para registrar un nuevo patinete
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para registrar un nuevo patinete
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */

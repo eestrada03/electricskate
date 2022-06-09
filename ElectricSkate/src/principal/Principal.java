@@ -31,7 +31,7 @@ public class Principal {
 			System.out.println("¡Conexión establecida correctamente!\n");
 
 			//Creamos la base de datos, UNA VEZ CREADA COMENTAR EL MÉTODO
-			Tablas.createBaseDeDatos(connection, "electricskate");
+			//Tablas.createBaseDeDatos(connection, "electricskate");
 			
 			
 			Menus.LogIn(connection, "electricskate");

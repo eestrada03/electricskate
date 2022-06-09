@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class Excepciones {
 	
 	/**
-	 * Metodo para tratar las SQLException lanzadas por por el programa java
+	 * Método para tratar las SQLException lanzadas por por el programa java
 	 * @param ex es la variable creada para el metodo de las SQLException.
 	 */
 	

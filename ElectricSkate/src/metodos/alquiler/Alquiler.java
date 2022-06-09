@@ -22,10 +22,10 @@ public class Alquiler {
 	static Scanner teclado = new Scanner(System.in);
 	
 	/**
-	 * metodo que nos permite realizar el alquiler de un determinado patinete
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método que nos permite realizar el alquiler de un determinado patinete
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */

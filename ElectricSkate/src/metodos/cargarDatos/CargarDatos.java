@@ -8,17 +8,17 @@ import metodos.excepciones.Excepciones;
 
 /**
  * Esta clase sirve para cargar los datos a la BBDD 
- * @author Reginnaldo, Reginaldo, Alberto, Kike, Jose Y Luz
+ * @author Reginaldo, Alberto, Kike, Jose Y Luz
  * @version 1.0
  */
 
 public class CargarDatos {
 	
 	/**
-	 * Metodo para cargar los datos del administrador a la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para cargar los datos del administrador a la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 	
 	// Metodo para insertar los administradores
@@ -49,10 +49,10 @@ public class CargarDatos {
 	}
 	
 	/**
-	 * metodo para cargar los datos del patinete a la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para cargar los datos del patinete a la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 
 	// Metodo para insertar los patinetes
@@ -83,10 +83,10 @@ public class CargarDatos {
 	}
 	
 	/**
-	 * metodo para cargar los datos del cliente a la BBDD
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para cargar los datos del cliente a la BBDD
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 */
 
 	// metodo para insertar a los clientes

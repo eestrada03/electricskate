@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"metodos.alquiler"},{"l":"metodos.buscar"},{"l":"metodos.cargarDatos"},{"l":"metodos.devolucion"},{"l":"metodos.excepciones"},{"l":"metodos.exportarTxt"},{"l":"metodos.listado"},{"l":"metodos.menus"},{"l":"metodos.registrar"},{"l":"metodos.tablas"},{"l":"principal"}];updateSearchResults();

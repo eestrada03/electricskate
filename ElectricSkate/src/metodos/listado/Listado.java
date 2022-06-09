@@ -21,10 +21,10 @@ public class Listado {
 	static Scanner teclado = new Scanner(System.in);
 	
 	/**
-	 * metodo para mostrar por consola el listado de clientes
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * Método para mostrar por consola el listado de clientes
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -87,10 +87,10 @@ public class Listado {
 	}
 	
 	/**
-	 * metodo para mostrar por pantalla el listado de los patinetes alquilados
-	 * @param con la variable que establece la conexion con la base de datos
+	 * Método para mostrar por pantalla el listado de los patinetes alquilados
+	 * @param con la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -150,10 +150,10 @@ public class Listado {
 	}
 	
 	/**
-	 * metodo para mostrar por pantalla los patinetes alquilados
-	 * @param con la variable que establece la conexion con la base de datos
+	 * Método para mostrar por pantalla los patinetes no alquilados
+	 * @param con la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -214,10 +214,10 @@ public class Listado {
 	}
 	
 	/**
-	 * metodo para mostrar por pantalla el listado completo de los patinetes
-	 * @param con la variable que establece la conexion con la base de datos
+	 * Método para mostrar por pantalla el listado completo de los patinetes
+	 * @param con la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */

@@ -9,6 +9,7 @@ import metodos.excepciones.Excepciones;
 
 public class Pruebas {
 	
+	//Método edadCliente(), al introducir un dni nos devolverá la edad del cliente
 	public static int edadCliente (Connection connection, String electricskate, String dni) throws SQLException {
 		
 		int edad = 0;
@@ -44,7 +45,7 @@ public class Pruebas {
 		
 	}
 	
-	
+	//Método colorPatinete(), al introducir el número de serie del patinete nos devolverá su color
 	public static String colorPatinete (Connection connection, String electricskate, int numSerie) throws SQLException {
 		
 		String color = " ";
@@ -80,7 +81,7 @@ public class Pruebas {
 		
 	}
 
-	
+	//Método contraseñaAdmin(), al introducir el nombre de usuario nos devolverá su contraseña
 	public static String contraseñaAdmin (Connection connection, String electricskate, String nombreUsuario) throws SQLException {
 		
 		String contraseña = " ";
@@ -113,6 +114,78 @@ public class Pruebas {
 			}
 		
 		return contraseña;
+			
+	}
+	
+	//Método kmRecorridoPatinete(), al introducir el número de serie de un patinete nos devolverá los kilometros recorridos
+	public static int kmRecorridoPatinete (Connection connection, String electricskate, int numSerie) throws SQLException {
+		
+		int kmRecorridoPatinete = 0;
+		
+		//Abrimos el Statement
+		Statement consulta = null;
+		//Creamos la sentencia select buscar la contraseña de un administrador introduciendo su u
+		String query = "select kmRecorridoPatinete from " + electricskate + ".patinete" + " WHERE numSerie = '"
+				+ numSerie + "'";
+		
+			try {
+				
+				//Guardamos dentro del objeto consulta de la clase Statement la conexión a la base de datos
+				consulta = connection.createStatement();
+				//guardamos todos los registros de la tabla que vamos a consultar
+				ResultSet registro = consulta.executeQuery(query);
+				
+				if (registro.next()) {
+					
+					kmRecorridoPatinete = registro.getInt("kmRecorridoPatinete");
+					
+				}
+							
+			} catch (SQLException e) {
+				Excepciones.printSQLException(e);
+				
+			} finally {
+				// Cerramos el Statement
+				consulta.close();
+			}
+		
+		return kmRecorridoPatinete;
+			
+	}
+	
+	//Método emailAdmin(), al introducir un dni de administrador nos devolverá su email
+	public static String emailAdmin (Connection connection, String electricskate, String dni) throws SQLException {
+		
+		String email = " ";
+		
+		//Abrimos el Statement
+		Statement consulta = null;
+		//Creamos la sentencia select buscar la contraseña de un administrador introduciendo su u
+		String query = "select email from " + electricskate + ".administrador" + " WHERE dni = '"
+				+ dni + "'";
+		
+			try {
+				
+				//Guardamos dentro del objeto consulta de la clase Statement la conexión a la base de datos
+				consulta = connection.createStatement();
+				//guardamos todos los registros de la tabla que vamos a consultar
+				ResultSet registro = consulta.executeQuery(query);
+				
+				if (registro.next()) {
+					
+					 email = registro.getString("email");
+					
+				}
+							
+			} catch (SQLException e) {
+				Excepciones.printSQLException(e);
+				
+			} finally {
+				// Cerramos el Statement
+				consulta.close();
+			}
+		
+		return email;
 			
 	}
 	

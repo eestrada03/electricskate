@@ -13,7 +13,7 @@ import metodos.menus.Menus;
 
 /**
  * Esta clase sirve para poder ilustrar el uso de los listados 
- * y exprtarlos a ficheros txt
+ * y exportarlos a ficheros txt
  * @author Reginaldo, Alberto, Kike, Jose Y Luz
  * @version 1.0
  */
@@ -21,11 +21,11 @@ import metodos.menus.Menus;
 public class ExportarTxt {
 	
 	/**
-	 * metodo para mostrar el listado de patinetes no alquilados 
+	 * Método para mostrar el listado de patinetes no alquilados 
 	 * y exportar dicho listado a un fichero txt
-	 * @param connection  la variable que establece la conexion con la base de datos
+	 * @param connection  la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -120,11 +120,11 @@ public class ExportarTxt {
 	}
 	
 	/**
-	 * metodo para mostrar el listado de patinetes alquilados
+	 * Método para mostrar el listado de patinetes alquilados
 	 * y exportar dicho listado a un fichero txt
-	 * @param connection  la variable que establece la conexion con la base de datos
+	 * @param connection  la variable que establece la conexión con la base de datos
 	 * @param BDNombre  nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -218,11 +218,11 @@ public class ExportarTxt {
 	}
 	
 	/**
-	 * metodo para mostrar el listado completo de patinetes 
+	 * Método para mostrar el listado completo de patinetes 
 	 * y exportar dicho listado a un fichero txt
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre  nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -314,11 +314,11 @@ public class ExportarTxt {
 	}
 	
 	/**
-	 * metodo para mostrar el listado de clientes 
+	 * Método para mostrar el listado de clientes 
 	 * y exportar dicho listado a un fichero txt
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
@@ -408,7 +408,7 @@ public class ExportarTxt {
 	}
 	
 	/**
-	 * metodo para poder crear el directorio para el fichero
+	 * Método para poder crear el directorio para el fichero
 	 */
 	
 	public static void crearDirectorio() {

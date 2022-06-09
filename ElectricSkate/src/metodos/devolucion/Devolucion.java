@@ -11,7 +11,7 @@ import metodos.excepciones.Excepciones;
 import metodos.menus.Menus;
 
 /**
- * Esta clase sirve para ilustrar el uso de la devolucion
+ * Esta clase sirve para ilustrar el uso de la devolución
  * @author Reginaldo, Alberto, Kike, Jose Y Luz
  * @version 1.0
  */
@@ -22,12 +22,12 @@ public class Devolucion {
 	static Scanner teclado = new Scanner(System.in);
 	
 	/**
-	 * metodo que nos permite realizar la devolucion de un patinete 
-	 * mediante el id del alquiler,  En cada devolución, los km recorridos se incrementarán 
+	 * Método que nos permite realizar la devolución de un patinete 
+	 * mediante el id del alquiler,  en cada devolución, los km recorridos se incrementarán 
 	 * con los km que ha hecho el cliente que ha devuelto el patinete
-	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param connection la variable que establece la conexión con la base de datos
 	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
-	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws SQLException este nos sirve para lanzar una excepción
 	 * @throws InterruptedException es una parte de la firma del método 
 	 * y un posible resultado de llamar al método que está llamando
 	 */
