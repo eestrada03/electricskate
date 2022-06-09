@@ -6,7 +6,20 @@ import java.sql.Statement;
 
 import metodos.excepciones.Excepciones;
 
+/**
+ * Esta clase sirve para cargar los datos a la BBDD 
+ * @author Reginnaldo, Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
+
 public class CargarDatos {
+	
+	/**
+	 * Metodo para cargar los datos del administrador a la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 	
 	// Metodo para insertar los administradores
 	public static void administrador(Connection connection, String BDNombre) throws SQLException {
@@ -34,6 +47,13 @@ public class CargarDatos {
 		}
 
 	}
+	
+	/**
+	 * metodo para cargar los datos del patinete a la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 
 	// Metodo para insertar los patinetes
 	public static void patinete(Connection connection, String BDNombre) throws SQLException {
@@ -61,6 +81,13 @@ public class CargarDatos {
 		}
 
 	}
+	
+	/**
+	 * metodo para cargar los datos del cliente a la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 
 	// metodo para insertar a los clientes
 	public static void cliente(Connection connection, String BDNombre) throws SQLException {

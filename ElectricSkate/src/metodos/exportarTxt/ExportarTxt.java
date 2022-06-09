@@ -11,7 +11,24 @@ import java.sql.Statement;
 
 import metodos.menus.Menus;
 
+/**
+ * Esta clase sirve para poder ilustrar el uso de los listados 
+ * y exprtarlos a ficheros txt
+ * @author Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
+
 public class ExportarTxt {
+	
+	/**
+	 * metodo para mostrar el listado de patinetes no alquilados 
+	 * y exportar dicho listado a un fichero txt
+	 * @param connection  la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	// Método para exportar el listado de patinetes NO ALQUILADOS a ficheros TXT
 	public static void listadoPatineteNoAlquilado(Connection connection, String BDNombre)
@@ -101,7 +118,17 @@ public class ExportarTxt {
 		}
 
 	}
-
+	
+	/**
+	 * metodo para mostrar el listado de patinetes alquilados
+	 * y exportar dicho listado a un fichero txt
+	 * @param connection  la variable que establece la conexion con la base de datos
+	 * @param BDNombre  nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
+	
 	// Método para exportar el listado de patinetes ALQUILADOS a ficheros TXT
 	public static void listadoPatineteAlquilado(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
@@ -189,7 +216,17 @@ public class ExportarTxt {
 		}
 
 	}
-
+	
+	/**
+	 * metodo para mostrar el listado completo de patinetes 
+	 * y exportar dicho listado a un fichero txt
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre  nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
+	
 	// Método para exportar el listado de TODOS los patinetes a ficheros TXT
 	public static void listadoCompletoPatinetes(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
@@ -275,7 +312,17 @@ public class ExportarTxt {
 			Menus.volverAlMenuPrincipal(connection, BDNombre);
 		}
 	}
-
+	
+	/**
+	 * metodo para mostrar el listado de clientes 
+	 * y exportar dicho listado a un fichero txt
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
+	
 	// Método para exportar el listado de cliente a ficheros TXT
 	public static void listadoClientes(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
@@ -359,7 +406,11 @@ public class ExportarTxt {
 			}
 
 	}
-
+	
+	/**
+	 * metodo para poder crear el directorio para el fichero
+	 */
+	
 	public static void crearDirectorio() {
 		
 		// Creamos objeto de tipo File y le asignamos una ruta absoluta

@@ -8,8 +8,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Principal {
+/**
+ * Clase principal del sistema
+ * @author Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
 
+public class Principal {
+	
+	/**
+	 * Este es el método principal
+	 * @param args 
+	 * @throws InterruptedException
+	 */
+	
 	public static void main(String[] args) throws InterruptedException {
 
 		try {

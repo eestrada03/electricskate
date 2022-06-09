@@ -9,8 +9,22 @@ import java.util.Scanner;
 import metodos.excepciones.Excepciones;
 import metodos.menus.Menus;
 
+/**
+ * Esta clase sirve para ilustrar la busqueda del cliente
+ * @author Reginnaldo, Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
+
 public class Buscar {
 	
+	/**
+	 * metodo que nos permite buscar a un cliente mediante su dni
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	// Método para buscar a los clientes registrados mediante su dni
 	public static void cliente(Connection connection, String BDNombre) throws SQLException, InterruptedException {

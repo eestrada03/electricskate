@@ -7,7 +7,20 @@ import java.sql.Statement;
 import metodos.cargarDatos.CargarDatos;
 import metodos.excepciones.Excepciones;
 
+/**
+ * Esta clase sirve para crear las tablas de la BBDD desde java eclipse 
+ * @author Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
+
 public class Tablas {
+	
+	/**
+	 * metodo para llamar otros metodos de creacion de las tablas a la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 	
 	public static void createBaseDeDatos(Connection connection, String BDNombre) throws SQLException {
 		createPatinete(connection, BDNombre);
@@ -20,6 +33,12 @@ public class Tablas {
 
 	}
 
+	/**
+	 * metodo para crear la tabla de patinetes en la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 	
 	public static void createPatinete(Connection connection, String BDNombre) throws SQLException {
 
@@ -43,7 +62,14 @@ public class Tablas {
 		}
 
 	}
-
+	
+	/**
+	 * metodo para crear la tabla de los clientes en la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
+	
 	// metodo para crear la tabla clientes
 	public static void createCliente(Connection connection, String BDNombre) throws SQLException {
 
@@ -67,6 +93,13 @@ public class Tablas {
 		}
 
 	}
+	
+	/**
+	 * metodo para crear la tabla de los administradores en la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 
 	// metodo para crear la tabla administradosres
 	public static void createAdministrador(Connection connection, String BDNombre) throws SQLException {
@@ -92,6 +125,13 @@ public class Tablas {
 		}
 
 	}
+	
+	/**
+	 * metodo para crear la tabla de alquiler en la BBDD
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 
 	// metodo para crear la tabla Alquiler
 	public static void createAlquiler(Connection connection, String BDNombre) throws SQLException {

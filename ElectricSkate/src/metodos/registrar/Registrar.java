@@ -11,9 +11,24 @@ import metodos.buscar.Buscar;
 import metodos.excepciones.Excepciones;
 import metodos.menus.Menus;
 
+/**
+ * Esta clase sirve para ilustrar el uso de los registros
+ * @author Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
+
 public class Registrar {
 	
 	static Scanner teclado = new Scanner(System.in);
+	
+	/**
+	 * metodo para poder registrar un nuevo cliente
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	//Método para registrar un nuevo cliente
 	public static void nuevoCliente(Connection connection, String electricskate) throws SQLException, InterruptedException {
@@ -119,7 +134,16 @@ public class Registrar {
 			connection.close();
 		}
 	}
-
+	
+	/**
+	 * metodo para registrar un nuevo administrador
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
+	
 	//Método para registrar nuevos administradores.	
 	public static void nuevoAdministradore(Connection connection, String electricskate) throws SQLException, InterruptedException {
 
@@ -229,7 +253,16 @@ public class Registrar {
 		}
 
 	}
-
+	
+	/**
+	 * metodo para registrar un nuevo patinete
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param electricskate es el nombre que le hemos dado a nuestra base de datos
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
+	
 	// Método para añadir patinete.
 	public static void nuevopatinete(Connection connection, String electricskate) throws SQLException, InterruptedException {
 

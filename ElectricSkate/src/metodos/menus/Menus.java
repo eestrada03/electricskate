@@ -14,10 +14,25 @@ import metodos.exportarTxt.ExportarTxt;
 import metodos.listado.Listado;
 import metodos.registrar.Registrar;
 
+/**
+ * Esta clase sirve para ilustrar los menús
+ * @author Reginaldo, Alberto, Kike, Jose Y Luz
+ * @version 1.0
+ */
+
 public class Menus {
 	
 	//Objeto scanner para recoger los datos introducidos por consola.
 	static Scanner teclado = new Scanner(System.in);
+	
+	/**
+	 * metodo para mostrar el menú principal para cada una de las acciones que queramos realizar
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	public static void menuPrincipal(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
@@ -116,6 +131,15 @@ public class Menus {
 
 	}
 	
+	
+	/**
+	 * metodo para seleccionar el tipo de usuario que pretendemos registrar
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	//Método para seleccionar el tipo de usuario a registrar
 	public static void registrarNuevoUsuario(Connection connection, String BDNombre)
 			throws SQLException, InterruptedException {
@@ -161,6 +185,15 @@ public class Menus {
 
 	}
 
+	/**
+	 * metodo para optar por el tipo de listado que pretendemos visulizar
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
+	
 	//Método para seleccionar el tipo de lista que se desea 
 	public static void listados(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
@@ -204,6 +237,15 @@ public class Menus {
 		}
 
 	}
+	
+	/**
+	 * metodo para seleccionar el tipo de listado que pretendemos visualizar
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	//Método donde selecciona el tipo de listado de patinetes
 	public static void listadoPatinetes(Connection connection, String BDNombre)
@@ -256,6 +298,15 @@ public class Menus {
 		}
 
 	}
+	
+	/**
+	 * metodo para optar por el listado que pretendemos exportar a un fichero txt
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	//Método donde se selecciona es el tipo de lista a exportar a txt
 	public static void exportarTXT(Connection connection, String BDNombre) throws SQLException, InterruptedException {
@@ -314,6 +365,16 @@ public class Menus {
 		}
 
 	}
+	
+	/**
+	 * metodo para el login, del cual primero tendrá que acceder el administrador
+	 * para poder navegar por la aplicacion
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 * @throws InterruptedException es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 */
 	
 	//Método para iniciar sesión
 	public static void LogIn(Connection connection, String BDNombre) throws SQLException, InterruptedException {
@@ -376,6 +437,15 @@ public class Menus {
 			
 		
 	}
+	
+	/**
+	 * metodo que nos permite volver al menú principal
+	 * @param connection la variable que establece la conexion con la base de datos
+	 * @param BDNombre nombre de la base de datos por defecto
+	 * @throws InterruptedException  es una parte de la firma del método 
+	 * y un posible resultado de llamar al método que está llamando
+	 * @throws SQLException este nos sirve para lanzar una excepcion
+	 */
 	
 	//Método que te dirige al menú principal
 	public static void volverAlMenuPrincipal(Connection connection, String BDNombre) throws InterruptedException, SQLException {
