@@ -2,11 +2,14 @@ package metodos.alquiler;
 
 
 
+import java.nio.file.attribute.AclEntry;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
+import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 
 import metodos.excepciones.Excepciones;
 import metodos.menus.Menus;
@@ -101,27 +104,36 @@ public class Alquiler {
 											"SELECT disponible FROM patinete WHERE numSerie = '" + numSerie + "'");
 									rs4.next();
 									int disponible = rs4.getInt("disponible");
+									
+									
+										
 
 									// Si disponible = 1, implica que está disponible y nos dejará continuar
 									if (disponible == 1) {
-
+										
+										String dateAlquiler = " ";
+										String dateDevolucion = " ";
+										
+										try {
 										// Pedimos por consola la información restante para realizar el alquiler
-										System.out.print("[0000-00-00] ");
-										System.out.print("Fecha Alquiler: ");
-
-										String dateAlquiler = teclado.nextLine();
+										System.out.print("Fecha Alquiler [aaaa-mm-dd]: ");
+										dateAlquiler = teclado.nextLine();
 										System.out.println(" ");
 
-										System.out.print("[0000-00-00] ");
-										System.out.print("Fecha Devolución: ");
-										String dateDevolucion = teclado.nextLine();
-										System.out.println(" ");
-
+										System.out.print("Fecha Devolución [aaaa-mm-dd]: ");
+										dateDevolucion = teclado.nextLine();
+										System.out.println(" ");		
+										
 										// Insertamos el nuevo alquiler en la tabla alquiler
 										stmt.executeUpdate("insert into " + BDNombre + ".alquiler VALUES(NULL,'" + dni
 												+ "','" + numSerie + "','" + dateAlquiler + "','" + dateDevolucion
 												+ "', 0)");
-
+										
+										} catch (Exception e) {
+											System.out.println("Error al realizar el alquiler, introduzca la fecha en un formato correcto.");
+											Thread.sleep(2500);
+											realizarAlquiler(connection, BDNombre);
+										}	
 										// Actualizamos la tabla cliente y ponemos alquilerActivo = 1
 										stmt.executeUpdate(
 												"update cliente set AlquilerActivo = 1 where dni = '" + dni + "'");
@@ -187,8 +199,7 @@ public class Alquiler {
 
 					} else {
 						System.out.println("");
-						System.out
-								.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler.");
+						System.out.println("El cliente ya tiene un alquiler activo, no es posible efectuar el alquiler.");
 						Thread.sleep(3000);
 						System.out.println("¿Desea introducir otro DNI?: [S/N]");
 						System.out.print("--> ");

@@ -33,8 +33,8 @@ public class Principal {
 			//Creamos la base de datos, UNA VEZ CREADA COMENTAR EL MÉTODO
 			//Tablas.createBaseDeDatos(connection, "electricskate");
 			
-			
-			Menus.LogIn(connection, "electricskate");
+			Menus.menuPrincipal(connection, "electricskate");
+			//Menus.LogIn(connection, "electricskate");
 			
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);			

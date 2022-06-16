@@ -161,12 +161,12 @@ public class Devolucion {
 			} catch (SQLException e) {
 				Excepciones.printSQLException(e);
 				
-			/*} catch (InputMismatchException e){
-				System.out.println("\n¡Error!, introduce un número.");
+			} catch (InputMismatchException e){
+				System.out.println("\n¡Error!, introduzca un número.");
 				Thread.sleep(3000);
 				teclado.nextLine();
 				realizarDevolucion(connection, electricskate);
-			*/	
+				
 			} finally {
 				// Cerramos el Statement
 				stmt.close();
