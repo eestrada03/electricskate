@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import metodos.alquiler.Alquiler;
@@ -16,24 +17,27 @@ import metodos.registrar.Registrar;
 
 /**
  * Esta clase sirve para ilustrar los menús
+ * 
  * @author Reginaldo, Alberto, Kike, Jose Y Luz
  * @version 1.0
  */
 
 public class Menus {
-	
-	//Objeto scanner para recoger los datos introducidos por consola.
+
+	// Objeto scanner para recoger los datos introducidos por consola.
 	static Scanner teclado = new Scanner(System.in);
-	
+
 	/**
-	 * Método para mostrar el menú principal para cada una de las acciones que queramos realizar
+	 * Método para mostrar el menú principal para cada una de las acciones que
+	 * queramos realizar
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepción
-	 * @throws InterruptedException es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws SQLException         este nos sirve para lanzar una excepción
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
 	 */
-	
+
 	public static void menuPrincipal(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -60,12 +64,22 @@ public class Menus {
 		System.out.println("9) Cerrar programa");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
-		
-		//Variable int que recoge la opción seleccionada por consola.
-		int opcion = teclado.nextInt();
-		teclado.nextLine();
-		
-		//Switch para navegar por el menú
+		int opcion = 0;
+		// Variable int que recoge la opción seleccionada por consola.
+		try {
+
+			opcion = teclado.nextInt();
+			teclado.nextLine();
+
+		} catch (InputMismatchException e) {
+			System.out.println("\n¡Error!, elija una opcion disponible\"");
+			Thread.sleep(3000);
+			teclado.nextLine();
+			menuPrincipal(connection, BDNombre);
+
+		}
+
+		// Switch para navegar por el menú
 		switch (opcion) {
 
 		case 1:
@@ -104,20 +118,20 @@ public class Menus {
 			break;
 
 		case 8:
-			
+
 			System.out.println("");
 			System.out.println("Cerrando sesión...");
 			Thread.sleep(3000);
 			LogIn(connection, BDNombre);
 
 			break;
-			
+
 		case 9:
-			
+
 			System.out.println("");
 			System.out.println("Cerrando el programa...");
 			System.exit(0);
-			
+
 			break;
 
 		default:
@@ -130,17 +144,17 @@ public class Menus {
 		}
 
 	}
-	
-	
+
 	/**
 	 * Método para seleccionar el tipo de usuario que pretendemos registrar
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepción
-	 * @throws InterruptedException es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws SQLException         este nos sirve para lanzar una excepción
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
 	 */
-	//Método para seleccionar el tipo de usuario a registrar
+	// Método para seleccionar el tipo de usuario a registrar
 	public static void registrarNuevoUsuario(Connection connection, String BDNombre)
 			throws SQLException, InterruptedException {
 
@@ -156,7 +170,18 @@ public class Menus {
 		System.out.println("3) Volver al menú principal");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
-		int opcion = teclado.nextInt();
+		int opcion = 0;
+		try {
+
+			opcion = teclado.nextInt();
+			teclado.nextLine();
+
+		} catch (InputMismatchException e) {
+			System.out.println("\n¡Error!, elija una opcion disponible\"");
+			Thread.sleep(3000);
+			teclado.nextLine();
+			registrarNuevoUsuario(connection, BDNombre);
+		}
 
 		switch (opcion) {
 
@@ -187,14 +212,15 @@ public class Menus {
 
 	/**
 	 * Método para optar por el tipo de listado que pretendemos visualizar
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepción
-	 * @throws InterruptedException es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws SQLException         este nos sirve para lanzar una excepción
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
 	 */
-	
-	//Método para seleccionar el tipo de lista que se desea 
+
+	// Método para seleccionar el tipo de lista que se desea
 	public static void listados(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -209,7 +235,19 @@ public class Menus {
 		System.out.println("3) Volver al menú principal");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
-		int opcion = teclado.nextInt();
+		int opcion = 0;
+
+		try {
+
+			opcion = teclado.nextInt();
+			teclado.nextLine();
+
+		} catch (InputMismatchException e) {
+			System.out.println("\n¡Error!, elija una opcion disponible\"");
+			Thread.sleep(3000);
+			teclado.nextLine();
+			listados(connection, BDNombre);
+		}
 
 		switch (opcion) {
 
@@ -237,17 +275,18 @@ public class Menus {
 		}
 
 	}
-	
+
 	/**
 	 * Método para seleccionar el tipo de listado que pretendemos visualizar
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepción
-	 * @throws InterruptedException es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws SQLException         este nos sirve para lanzar una excepción
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
 	 */
-	
-	//Método donde selecciona el tipo de listado de patinetes
+
+	// Método donde selecciona el tipo de listado de patinetes
 	public static void listadoPatinetes(Connection connection, String BDNombre)
 			throws SQLException, InterruptedException {
 
@@ -265,7 +304,19 @@ public class Menus {
 		System.out.println("4) Volver al menú anterior");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
-		int opcion = teclado.nextInt();
+		int opcion = 0;
+
+		try {
+
+			opcion = teclado.nextInt();
+			teclado.nextLine();
+
+		} catch (InputMismatchException e) {
+			System.out.println("\n¡Error!, elija una opcion disponible\"");
+			Thread.sleep(3000);
+			teclado.nextLine();
+			listadoPatinetes(connection, BDNombre);
+		}
 
 		switch (opcion) {
 
@@ -298,17 +349,18 @@ public class Menus {
 		}
 
 	}
-	
+
 	/**
 	 * Método para optar por el listado que pretendemos exportar a un fichero .txt
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepción
-	 * @throws InterruptedException es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws SQLException         este nos sirve para lanzar una excepción
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
 	 */
-	
-	//Método donde se selecciona es el tipo de lista a exportar a txt
+
+	// Método donde se selecciona es el tipo de lista a exportar a txt
 	public static void exportarTXT(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -327,7 +379,18 @@ public class Menus {
 		System.out.println("5) Volver al menú principal");
 		System.out.println("");
 		System.out.print("Seleccione una opción: ");
-		int opcion = teclado.nextInt();
+		int opcion = 0;
+		try {
+
+			opcion = teclado.nextInt();
+			teclado.nextLine();
+
+		} catch (InputMismatchException e) {
+			System.out.println("\n¡Error!, elija una opcion disponible\"");
+			Thread.sleep(3000);
+			teclado.nextLine();
+			exportarTXT(connection, BDNombre);
+		}
 
 		switch (opcion) {
 
@@ -365,18 +428,19 @@ public class Menus {
 		}
 
 	}
-	
+
 	/**
 	 * Método para el login, del cual primero tendrá que acceder el administrador
 	 * para poder navegar por la aplicación
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws SQLException este nos sirve para lanzar una excepción
-	 * @throws InterruptedException es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws SQLException         este nos sirve para lanzar una excepción
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
 	 */
-	
-	//Método para iniciar sesión
+
+	// Método para iniciar sesión
 	public static void LogIn(Connection connection, String BDNombre) throws SQLException, InterruptedException {
 
 		System.out.println("");
@@ -387,72 +451,71 @@ public class Menus {
 		System.out.println("             LOGIN");
 		System.out.println("");
 		System.out.println("");
-		
+
 		System.out.print("Usuario: ");
 		String nombreUsuario = teclado.nextLine();
 
 		System.out.println("");
 		System.out.print("Contraseña: ");
 		String contraseña = teclado.nextLine();
-		
-		//Creamos objeto statement vacio 
+
+		// Creamos objeto statement vacio
 		Statement consulta = null;
-		String queryUsario = "select nombre, apellidos " + " from " + BDNombre + ".administrador" + " WHERE nombreUsuario = '"
-				+ nombreUsuario + "'" + " AND contraseña = '" + contraseña + "'";
-		
+		String queryUsario = "select nombre, apellidos " + " from " + BDNombre + ".administrador"
+				+ " WHERE nombreUsuario = '" + nombreUsuario + "'" + " AND contraseña = '" + contraseña + "'";
+
 		try {
-			
-			//Creamos un statement
+
+			// Creamos un statement
 			consulta = connection.createStatement();
-			//Creamos un ResultSet 
+			// Creamos un ResultSet
 			ResultSet registro = consulta.executeQuery(queryUsario);
 
 			System.out.println("");
-			
-			//En caso de que exista el usuario introducido
+
+			// En caso de que exista el usuario introducido
 			if (registro.next()) {
-						
+
 				ResultSet rs = consulta.executeQuery(queryUsario);
 				rs.next();
 				String nombre = rs.getString("nombre");
-				
-				System.out.println("Bienvenido " +nombre+"!");
+
+				System.out.println("Bienvenido " + nombre + "!");
 				Thread.sleep(3000);
 				menuPrincipal(connection, BDNombre);
-				
-			//En caso de que no exista el usuario introducido
+
+				// En caso de que no exista el usuario introducido
 			} else {
-				
+
 				System.out.println("¡Error!, usuario o contraseña incorrecto");
 				Thread.sleep(3000);
 				LogIn(connection, BDNombre);
 			}
-			
-			
+
 		} catch (SQLException e) {
 			Excepciones.printSQLException(e);
 		} finally {
 			consulta.close();
 		}
-			
-		
+
 	}
-	
+
 	/**
 	 * Método que nos permite volver al menú principal
+	 * 
 	 * @param connection la variable que establece la conexión con la base de datos
-	 * @param BDNombre nombre de la base de datos por defecto
-	 * @throws InterruptedException  es una parte de la firma del método 
-	 * y un posible resultado de llamar al método que está llamando
-	 * @throws SQLException este nos sirve para lanzar una excepción
+	 * @param BDNombre   nombre de la base de datos por defecto
+	 * @throws InterruptedException es una parte de la firma del método y un posible
+	 *                              resultado de llamar al método que está llamando
+	 * @throws SQLException         este nos sirve para lanzar una excepción
 	 */
-	
-	//Método que te dirige al menú principal
-	public static void volverAlMenuPrincipal(Connection connection, String BDNombre) throws InterruptedException, SQLException {
-	System.out.println("\nVolviendo al menú principal...");
-	Thread.sleep(2500);
-	Menus.menuPrincipal(connection, BDNombre);
-}
-	
-	
+
+	// Método que te dirige al menú principal
+	public static void volverAlMenuPrincipal(Connection connection, String BDNombre)
+			throws InterruptedException, SQLException {
+		System.out.println("\nVolviendo al menú principal...");
+		Thread.sleep(2500);
+		Menus.menuPrincipal(connection, BDNombre);
+	}
+
 }
